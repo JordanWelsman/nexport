@@ -13,12 +13,21 @@
 - [Overview](#overview)
 - [Table of contents](#table-of-contents)
 - [Objectives](#objectives)
+  - [Personal objectives](#personal-objectives)
 - [History](#history)
 
 # Objectives
 
 - Export weights and biases to human-readable file
 - Ensure compatability with all popular neural network development software
+
+## Personal objectives
+
+- Learn `PyTorch`
+- Understand how `PyTorch` and `Keras` construct neural networks
+- Learn how to publish a python package
+- Create a pseudo-pipeline between `Python` and `Fortran` projects (`PyTorch`-`nexport`-`inference-engine`)
+- Write a paper on this software
 
 # History
 
