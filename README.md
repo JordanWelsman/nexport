@@ -1,4 +1,6 @@
-```
+# nexport
+
+```ASCII
  __   _ _______ _     _  _____   _____   ______ _______
  | \  | |______  \___/  |_____] |     | |_____/    |   
  |  \_| |______ _/   \_ |       |_____| |    \_    |   
@@ -10,11 +12,16 @@
 
 # Table of contents
 
+- [nexport](#nexport)
 - [Overview](#overview)
 - [Table of contents](#table-of-contents)
 - [Objectives](#objectives)
   - [Personal objectives](#personal-objectives)
 - [History](#history)
+  - [Changelog](#changelog)
+    - [v0.0.0](#v000)
+    - [v0.0.1](#v001)
+    - [v0.0.2](#v002)
 
 # Objectives
 
@@ -32,3 +39,19 @@
 # History
 
 This package is intended to be used in conjunction with [inference-engine](https://github.com/BerkeleyLab/inference-engine). As such, `nexport` was developed by the `inference-engine` developers to enable compatability between the two softwares. `nexport` does this by exporting the weights and biases from networks compiled in `PyTorch`, `Keras`, and `TensorFlow` into standardized human-readable files. These files can be read by `inference-engine` to instantiate the netwoks in Fortran 2018 for inference.
+
+## Changelog
+
+### v0.0.0
+
+- Created project
+
+### v0.0.1
+
+- Developed `README`
+- Added `LICENSE`
+- Created package files
+
+### v0.0.2
+
+- Added command line tools
