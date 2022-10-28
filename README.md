@@ -1,6 +1,4 @@
-# nexport
-
-```ASCII
+```ascii
  __   _ _______ _     _  _____   _____   ______ _______
  | \  | |______  \___/  |_____] |     | |_____/    |   
  |  \_| |______ _/   \_ |       |_____| |    \_    |   
@@ -8,20 +6,50 @@
 
 # Overview
 
-`nexport` is a lightweight Python `3.10+` package whic enables neural network developers to export the weights and biases of trained networks to a human-readable file.
+`nexport` is a lightweight Python `3.10+` package which enables neural network developers to export the weights and biases of trained networks to a human-readable file.
 
 # Table of contents
 
-- [nexport](#nexport)
 - [Overview](#overview)
 - [Table of contents](#table-of-contents)
+- [Install & use](#install--use)
+  - [Test](#test)
+  - [Build](#build)
 - [Objectives](#objectives)
   - [Personal objectives](#personal-objectives)
 - [History](#history)
-  - [Changelog](#changelog)
-    - [v0.0.0](#v000)
-    - [v0.0.1](#v001)
-    - [v0.0.2](#v002)
+  - [`0.0.0` (10.13.2022)](#000-10132022)
+  - [`0.0.1` (10.27.2022)](#001-10272022)
+  - [`0.1.0` (Planned)](#010-planned)
+- [Credits](#credits)
+- [License](#license)
+- [Links](#links)
+
+# Install & use
+
+1. From terminal:
+`pip install nexport`
+2. From python environment:
+`import nexport`
+
+## Test
+
+1. Clone repository:
+`git clone https://github.com/JordanWelsman/nexport.git`
+2. Build module for testing:
+`python3 setup.py bdist_wheel`
+3. Install module locally:
+`pip install -e .`
+4. Run tests with `PyTest`:
+`pytest`
+
+## Build
+
+1. Build module for distribution:
+`python3 setup.py bdist_wheel sdist`
+2. Push to `PyPI`:
+`pip install twine`
+`twine upload dist/*`
 
 # Objectives
 
@@ -40,18 +68,41 @@
 
 This package is intended to be used in conjunction with [inference-engine](https://github.com/BerkeleyLab/inference-engine). As such, `nexport` was developed by the `inference-engine` developers to enable compatability between the two softwares. `nexport` does this by exporting the weights and biases from networks compiled in `PyTorch`, `Keras`, and `TensorFlow` into standardized human-readable files. These files can be read by `inference-engine` to instantiate the netwoks in Fortran 2018 for inference.
 
-## Changelog
+## `0.0.0` (10.13.2022)
 
-### v0.0.0
+- GitHub repository created
+- Project created
+  - Basic `README.md` written
 
-- Created project
+## `0.0.1` (10.27.2022)
 
-### v0.0.1
+- Package files created
+  - `setup.py` and `LICENSE.md`
+- Created test file & tested with `PyTest`
 
-- Developed `README`
-- Added `LICENSE`
-- Created package files
+## `0.1.0` (Planned)
 
-### v0.0.2
+- _Stable release_
 
-- Added command line tools
+# Credits
+
+`nexport` was created and is currently maintained by **Jordan Welsman**.
+This project was based on prior work by **Tan Nguyen**.
+
+# License
+
+`nexport` does not currently have a license and is currently purely for private use only.
+
+# Links
+
+:file_folder: [See this project on GitHub](https://github.com/JordanWelsman/nexport/)
+
+:gift: [See this project on PyPI](https://pypi.org/project/nexport/)
+
+:cat: [Follow me on GitHub](https://github.com/JordanWelsman/)
+
+:briefcase: [Connect with me on Linkedin](https://linkedin.com/in/JordanWelsman/)
+
+:email: [Send me an email](mailto:jordan.welsman@outlook.com)
+
+:thought_balloon: [Based on this project](https://github.com/tannguyen153/icar_pt)
