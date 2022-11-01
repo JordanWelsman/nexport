@@ -21,6 +21,24 @@ def print_wb(model: object):
                 print(float(b))
 
 
+def print_wb_array(model: object):
+    """Function which inserts all weights and biases into an array."""
+    for x, y in enumerate(model.parameters()): # access parameter array
+        if (x % 2 != 1): # if array is not odd (even index = weights)
+            weight_array = []
+            for z in y: # access weight array x in layer y
+                weights = []
+                for w in z: # access weights for neuron w in from neuron z in layer y
+                    weights.append(float(w))
+                weight_array.append(weights)
+            print(weight_array)
+        else: # if array is odd (odd index = biases)
+            biases = []
+            for b in y:
+                biases.append(float(b))
+            print(biases)
+
+
 class FFNetwork(nn.Module):
     def __init__(self):
         super(FFNetwork, self).__init__()
@@ -40,4 +58,5 @@ model = FFNetwork()
 print("")
 
 # print_one(model)
-print_wb(model)
+# print_wb(model)
+print_wb_array(model)
