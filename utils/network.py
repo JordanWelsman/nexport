@@ -4,7 +4,7 @@ from torch import tensor
 
 def print_one(model: object):
     """Function which prints the first weight of the first layer to the terminal."""
-    print(list(model.parameters())[0])
+    print(list(model.parameters())[1])
 
 
 def print_wb(model: object):
@@ -67,6 +67,9 @@ def print_wb_file(model: object, filename: str):
     f.close()
 
 
+def calculate_params(model: object, )
+
+
 def test_w_b(model: object):
     assert len(list(model.parameters)) % 2 == 0
 
@@ -103,7 +106,7 @@ class BFNetwork(nn.Module):
         )
 
 
-model = BFNetwork()
+model = FFNetwork()
 
 print("")
 
