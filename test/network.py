@@ -39,6 +39,34 @@ def print_wb_array(model: object):
             print(biases)
 
 
+def print_wb_file(model: object, filename: str):
+    """Function which exports all weight and bias arrays to a file."""
+    f = open(filename, "w")
+    for x, y in enumerate(model.parameters()): # access parameter array
+        if (x % 2 != 1): # if array is not odd (even index = weights)
+            for i, z in enumerate(y): # access weight array x in layer y
+                if i == 0:
+                    f.write("[")
+                else:
+                    f.write(" ")
+                weights = []
+                for w in z: # access weights for neuron w in from neuron z in layer y
+                    weights.append(float(w))
+                # weight_array.append(weights)
+                f.write(str(weights))
+                if i == len(y) - 1:
+                    f.write("]")
+                f.write("\n")
+            f.write("\n")
+        else: # if array is odd (odd index = biases)
+            biases = []
+            for b in y:
+                biases.append(float(b))
+            f.write(str(biases))
+            f.write("\n\n\n")
+    f.close()
+
+
 class FFNetwork(nn.Module):
     def __init__(self):
         super(FFNetwork, self).__init__()
@@ -59,4 +87,5 @@ print("")
 
 # print_one(model)
 # print_wb(model)
-print_wb_array(model)
+# print_wb_array(model)
+print_wb_file(model, "weights_and_biases.txt")
