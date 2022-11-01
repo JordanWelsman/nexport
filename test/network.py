@@ -67,6 +67,10 @@ def print_wb_file(model: object, filename: str):
     f.close()
 
 
+def test_w_b(model: object):
+    assert len(list(model.parameters)) % 2 == 0
+
+
 class FFNetwork(nn.Module):
     def __init__(self):
         super(FFNetwork, self).__init__()
@@ -80,8 +84,26 @@ class FFNetwork(nn.Module):
         )
 
 
-model = FFNetwork()
+class BFNetwork(nn.Module):
+    def __init__(self):
+        super(BFNetwork, self).__init__()
+        self.flatten = nn.Flatten()
+        self.linear_relu_stack = nn.Sequential(
+            nn.Linear(28*28, 256),
+            nn.ReLU(),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 16),
+            nn.ReLU(),
+            nn.Linear(16, 8)
+        )
 
+
+model = BFNetwork()
 
 print("")
 
