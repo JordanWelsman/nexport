@@ -7,6 +7,20 @@ def print_one(model: object):
     print(list(model.parameters())[0])
 
 
+def print_wb(model: object):
+    """Function which prints all weights and biases to the terminal."""
+    for x, y in enumerate(model.parameters()): # access parameter array
+        if (x % 2 != 1): # if array is not odd (even index = weights)
+            print(f"\n----------[ Layer {(int(x/2))+1} weights: ]----------")
+            for z in y: # access weight array x in layer y
+                for w in z: # access weights for neuron w in from neuron z in layer y
+                    print(float(w))
+        else: # if array is odd (odd index = biases)
+            print(f"\n----------[ Layer {(int(x/2))+1} biases:  ]----------")
+            for b in y:
+                print(float(b))
+
+
 class FFNetwork(nn.Module):
     def __init__(self):
         super(FFNetwork, self).__init__()
@@ -25,4 +39,5 @@ model = FFNetwork()
 
 print("")
 
-print_one(model)
+# print_one(model)
+print_wb(model)
