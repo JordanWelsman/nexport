@@ -4,7 +4,7 @@ from torch import nn
 
 # Module functions
 
-def print_wb_file(model: object, filename: str):
+def export_to_file(model: object, filename: str):
     """Function which exports all weight and bias arrays to a file."""
     print(f"Creating file: {filename}")
     f = open(filename, "w")
@@ -80,5 +80,5 @@ class BFNetwork(nn.Module):
 model = FFNetwork()
 
 print("")
-print_wb_file(model, "weights_and_biases.txt")
+export_to_file(model, "weights_and_biases.txt")
 calculate_params(model)
