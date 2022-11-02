@@ -18,7 +18,7 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://github.com/JordanWelsman/nexport/',
-    py_modules = ["__init__"],
+    py_modules = ["__init__", "utils"],
     classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Other Audience", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python :: 3.9", "Topic :: Scientific/Engineering :: Mathematics"],
     package_dir = {'': 'nexport'},
     extras_require = {
