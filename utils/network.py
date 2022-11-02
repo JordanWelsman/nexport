@@ -1,5 +1,8 @@
+# Module imports
 from torch import nn
 
+
+# Module functions
 
 def print_wb_file(model: object, filename: str):
     """Function which exports all weight and bias arrays to a file."""
