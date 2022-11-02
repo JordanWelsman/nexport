@@ -1,6 +1,5 @@
-import torch
 from torch import nn
-from torch import tensor
+
 
 def print_one(model: object):
     """Function which prints the first weight of the first layer to the terminal."""
