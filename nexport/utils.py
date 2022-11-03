@@ -90,6 +90,8 @@ model = FFNetwork()
 
 print("")
 
-# export_to_file(model, "weights_and_biases.txt")
+export_to_file(model, "weights_and_biases.txt")
+
 # calculate_params(model)
-generate_filename()
+
+# generate_filename()
