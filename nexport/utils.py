@@ -1,5 +1,6 @@
 # Module imports
 from torch import nn
+import datetime as dt
 
 
 # Module functions
@@ -42,6 +43,14 @@ def calculate_params(model: object, param_type: str = "wb"):
     print(f"Param type: {param_type}")
 
 
+def generate_filename(param_type: str = "wb"):
+    now = dt.datetime.now()
+    match param_type:
+        case "wb":
+            return f"weights_bias_{now.microsecond}"
+    
+
+
 # Model classes
 
 class FFNetwork(nn.Module):
@@ -80,5 +89,7 @@ class BFNetwork(nn.Module):
 model = FFNetwork()
 
 print("")
-export_to_file(model, "weights_and_biases.txt")
-calculate_params(model)
+
+# export_to_file(model, "weights_and_biases.txt")
+# calculate_params(model)
+generate_filename()
