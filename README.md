@@ -6,7 +6,7 @@
 
 # Overview
 
-`nexport` is a lightweight `Python 3` package which enables neural network developers to export the weights and biases of trained networks to a human-readable file.
+`nexport` is a lightweight `python 3` package which enables neural network developers to export the weights and biases of trained networks to useful file types.
 
 # Table of contents
 
