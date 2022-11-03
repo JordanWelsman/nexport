@@ -1,0 +1,5 @@
+.DS_Store
+.pytest_cache
+.vscode
+test/__pycache__
+weights_and_biases.txt
