@@ -16,17 +16,12 @@ def export_to_file(model: object, filename: str):
         if (x % 2 != 1): # if array is not odd (even index = weights)
             print(f"Extracting {c.GREEN}weights{c.DEFAULT} from layer {c.RED}{(int(x/2))+1}{c.DEFAULT}")
             for i, z in enumerate(y): # access weight array x in layer y
-                if i == 0:
-                    f.write("[")
-                else:
-                    f.write(" ")
+                f.write("[") if i == 0 else f.write(" ")
                 weights = []
                 for w in z: # access weights for neuron w in from neuron z in layer y
                     weights.append(float(w))
-                # weight_array.append(weights)
                 f.write(str(weights))
-                if i == len(y) - 1:
-                    f.write("]")
+                f.write("]") if i == len(y) - 1 else f.write("")
                 f.write("\n")
             f.write("\n")
         else: # if array is odd (odd index = biases)
