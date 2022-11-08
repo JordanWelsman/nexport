@@ -2,16 +2,19 @@
 from torch import nn
 import datetime as dt
 
+# File imports
+import colors as c
+
 
 # Module functions
 
 def export_to_file(model: object, filename: str):
     """Function which exports all weight and bias arrays to a file."""
-    print(f"Creating file: {filename}")
+    print(f"Creating file: {c.color.YELLOW}{filename}{c.color.DEFAULT}")
     f = open(filename, "w")
     for x, y in enumerate(model.parameters()): # access parameter array
         if (x % 2 != 1): # if array is not odd (even index = weights)
-            print(f"Extracting weights from layer {(int(x/2))+1}")
+            print(f"Extracting {c.color.GREEN}weights{c.color.DEFAULT} from layer {c.color.RED}{(int(x/2))+1}{c.color.DEFAULT}")
             for i, z in enumerate(y): # access weight array x in layer y
                 if i == 0:
                     f.write("[")
@@ -27,15 +30,15 @@ def export_to_file(model: object, filename: str):
                 f.write("\n")
             f.write("\n")
         else: # if array is odd (odd index = biases)
-            print(f"Extracting biases from layer  {(int(x/2))+1}")
+            print(f"Extracting {c.color.MAGENTA}biases{c.color.DEFAULT} from layer  {c.color.RED}{(int(x/2))+1}{c.color.DEFAULT}")
             biases = []
             for b in y:
                 biases.append(float(b))
             f.write(str(biases))
             f.write("\n\n\n")
-    print(f"Saving file: {filename}")
+    print(f"Saving file: {c.color.YELLOW}{filename}{c.color.DEFAULT}")
     f.close()
-    print("Done!")
+    print(f"{c.color.CYAN}Done!{c.color.DEFAULT}")
 
 
 def calculate_params(model: object, param_type: str = "wb"):
