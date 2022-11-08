@@ -1,14 +1,16 @@
 # Module imports
+
 from torch import nn
 import datetime as dt
 
 # File imports
+
 from colors import color as c
 
 
 # Module functions
 
-def export_to_file(model: object, filename: str):
+def export_to_file(model: object, filename: str) -> None:
     """Function which exports all weight and bias arrays to a file."""
     print(f"Creating file: {c.YELLOW}{filename}{c.DEFAULT}")
     f = open(filename, "w")
@@ -85,11 +87,7 @@ class BFNetwork(nn.Module):
 # Runtime environment
 
 model = FFNetwork()
-
-print("")
-
 export_to_file(model, "weights_and_biases.txt")
 
 # calculate_params(model)
-
 # generate_filename()
