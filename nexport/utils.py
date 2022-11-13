@@ -1,10 +1,8 @@
 # Module imports
-
 from torch import nn
 import datetime as dt
 
 # File imports
-
 from colors import color as c
 
 
@@ -50,7 +48,6 @@ def generate_filename(param_type: str = "wb"):
             return f"weights_bias_{now.microsecond}"
     
 
-
 # Model classes
 
 class FFNetwork(nn.Module):
@@ -64,6 +61,7 @@ class FFNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(3, 1) # 3 weights, 1 bias
         )
+
 
 class BFNetwork(nn.Module):
     def __init__(self):
