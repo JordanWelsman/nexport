@@ -10,6 +10,7 @@ from colors import color as c
 
 def export_to_file(model: object, filename: str) -> None:
     """Function which exports all weight and bias arrays to a file."""
+    filename = append_extension(filename=filename, extension='txt')
     print(f"Creating file: {c.YELLOW}{filename}{c.DEFAULT}")
     f = open(filename, "w")
     for x, y in enumerate(model.parameters()): # access parameter array
@@ -34,6 +35,24 @@ def export_to_file(model: object, filename: str) -> None:
     print(f"Saving file: {c.YELLOW}{filename}{c.DEFAULT}")
     f.close()
     print(f"{c.CYAN}Done!{c.DEFAULT}")
+
+
+def export_to_json(model: object, filename: str):
+    """Function which exports all weight and bias arrays to JSON."""
+
+
+def append_extension(filename: str, extension: str) -> str:
+    """Function which constructs the filename and extension so the user doesn't have to"""
+    filename = filename.replace(' ', '_')
+    match extension:
+        case "txt":
+            return filename + ".txt"
+        case "json":
+            return filename + ".json"
+        case "xml":
+            return filename + ".xml"
+        case other:
+            raise Exception(f"Unsupported filetype: {other}.Please provide a supported filetype.")
 
 
 def calculate_params(model: object, param_type: str = "wb"):
@@ -82,10 +101,120 @@ class BFNetwork(nn.Module):
         )
 
 
+class ICARNetwork(nn.Module):
+    def __init__(self):
+        super(ICARNetwork, self).__init__()
+        self.flatten = nn.Flatten()
+        self.linear_relu_stack = nn.Sequential(
+            nn.Linear(10, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 10)
+        )
+
+
 # Runtime environment
 
 model = FFNetwork()
-export_to_file(model, "weights_and_biases.txt")
+export_to_file(model=model, filename="weights and biases")
+# print(append_extension("w and b", "json"))
 
 # calculate_params(model)
 # generate_filename()
