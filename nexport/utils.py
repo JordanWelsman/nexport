@@ -49,6 +49,8 @@ def append_extension(filename: str, extension: str) -> str:
             return filename + ".txt"
         case "json":
             return filename + ".json"
+        case "csv":
+            return filename + ".csv"
         case "xml":
             return filename + ".xml"
         case other:
@@ -213,8 +215,8 @@ class ICARNetwork(nn.Module):
 # Runtime environment
 
 model = FFNetwork()
-export_to_file(model=model, filename="weights and biases")
+# export_to_file(model=model, filename="weights and biases")
 # print(append_extension("w and b", "json"))
 
-# calculate_params(model)
+calculate_params(model)
 # generate_filename()

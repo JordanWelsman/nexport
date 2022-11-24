@@ -2,7 +2,7 @@
 from setuptools import setup
 
 # Arguments
-version = "0.0.2"
+version = "0.1.0"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
@@ -18,8 +18,8 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://github.com/JordanWelsman/nexport/',
-    py_modules = ["__init__", "utils"],
-    classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Other Audience", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python :: 3.9", "Topic :: Scientific/Engineering :: Mathematics"],
+    py_modules = ["__init__", "colors", "utils"],
+    classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Developers", "License :: OSI Approved :: BSD License", "Operating System :: OS Independent", "Programming Language :: Python :: 3.10", "Topic :: Scientific/Engineering :: Artificial Intelligence"],
     package_dir = {'': 'nexport'},
     extras_require = {
         "dev": [
