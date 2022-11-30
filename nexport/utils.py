@@ -57,9 +57,13 @@ def append_extension(filename: str, extension: str) -> str:
             raise Exception(f"Unsupported filetype: {other}.Please provide a supported filetype.")
 
 
-def calculate_params(model: object, param_type: str = "wb"):
+def calculate_params(model: object, param_type: str = "wb") -> int:
     """Function which calculates the number of trainable parameters of a passed model."""
-    print(f"Param type: {param_type}")
+    weights = 0
+    biases = 0
+    print(model.parameters()[0][0])
+    # return "Param type:" + param_type
+    # return weights + biases
 
 
 def generate_filename(param_type: str = "wb"):
@@ -215,8 +219,9 @@ class ICARNetwork(nn.Module):
 # Runtime environment
 
 model = FFNetwork()
+
 # export_to_file(model=model, filename="weights and biases")
 # print(append_extension("w and b", "json"))
+print(f"Number of parameters: {calculate_params(model=model, param_type='wb')}")
 
-calculate_params(model)
 # generate_filename()
