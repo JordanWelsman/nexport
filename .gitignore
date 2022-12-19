@@ -3,6 +3,8 @@
 .vscode
 __pycache__
 test/__pycache__
+nexport/__pycache__
+*.pyc
 target_parameters.txt
 weights_and_biases.json
 weights_and_biases.txt
