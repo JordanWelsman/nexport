@@ -5,6 +5,7 @@ __pycache__
 test/__pycache__
 nexport/__pycache__
 *.pyc
+model.json
 target_parameters.txt
 weights_and_biases.json
 weights_and_biases.txt

@@ -4,6 +4,7 @@ import numpy as np
 import datetime as dt
 import torch as torch
 from torch import nn
+import json
 
 # File imports
 from colors import color as c
@@ -11,8 +12,21 @@ from colors import color as c
 
 # Module functions
 
+def generate_filename(param_type: str = "wb"):
+    """
+    Function which generates a filename.
+    """
+    now = dt.datetime.now()
+    match param_type:
+        case "wb":
+            return f"weights_bias_{now.microsecond}"
+
+
 def append_extension(filename: str, extension: str) -> str:
-    """Function which constructs the filename and extension so the user doesn't have to"""
+    """
+    Function which constructs the filename
+    and extension so the user doesn't have to.
+    """
     filename = filename.replace(' ', '_')
     match extension:
         case "txt":
@@ -28,7 +42,10 @@ def append_extension(filename: str, extension: str) -> str:
 
 
 def calculate_params(model: object, param_type: str = "t") -> list:
-    """Function which calculates the number of trainable parameters of a passed model."""
+    """
+    Function which calculates the number
+    of trainable parameters of a passed model.
+    """
     weights = 0
     biases = 0
 
@@ -62,7 +79,10 @@ def calculate_params(model: object, param_type: str = "t") -> list:
 
 
 def export_to_file(model: object, filename: str) -> None:
-    """Function which exports all weight and bias arrays to a file."""
+    """
+    Function which exports all weight
+    and bias arrays to a file.
+    """
     filename = append_extension(filename=filename, extension='txt')
     print(f"Creating file: {c.YELLOW}{filename}{c.DEFAULT}")
     f = open(filename, "w")
@@ -91,7 +111,10 @@ def export_to_file(model: object, filename: str) -> None:
 
 
 def import_from_file(filepath: str, framework: str = "PyTorch", architecture: str = "linear") -> object:
-    """Function which imports weight and bias arrays and instantiates a model."""
+    """
+    Function which imports weight and bias
+    arrays and instantiates a model.
+    """
     with open("qr_WnB_noBypass") as file:
         lines = file.read().splitlines() # read file and store in lines
 
@@ -134,15 +157,74 @@ def import_from_file(filepath: str, framework: str = "PyTorch", architecture: st
         model_biases[x] = model_biases[x].astype(np.float)
 
 
-def export_to_json(model: object, filename: str):
-    """Function which exports all weight and bias arrays to JSON."""
+def create_paramater_arrays(model:object) -> tuple:
+    """
+    Function which splits a model's state_dict into weight
+    and bias arrays and returns them for indexing elsewhere.
+    """
+    model_dictionary = model.state_dict()
+    weights = []
+    biases = []
+
+    # Loop which creates parameter arrays from model's state_dict
+    for x, item in enumerate(model_dictionary):
+        if x % 2 == 0: # if even (weight)
+            weights.append(model_dictionary[item])
+        else: # if odd (bias)
+            biases.append(model_dictionary[item])
+
+    return weights, biases
 
 
-def generate_filename(param_type: str = "wb"):
-    now = dt.datetime.now()
-    match param_type:
-        case "wb":
-            return f"weights_bias_{now.microsecond}"
+def create_layer_object(weights: list, biases: list) -> list:
+    """
+    Function which constructs a single layer from
+    parameter arrays and returns it as a list of neurons.
+    """
+    neuron_list = []
+    temp_weights = []
+    temp_biases = []
+    temp_dict = {}
+    
+    # Loop which creates a layer object from parameter arrays
+    for i in range(len(weights)):
+        for j in weights[i]:
+            temp_weights.append(j.item())
+        temp_biases.append(biases[i].item())
+        temp_dict["weights"] = temp_weights.copy()
+        temp_dict["bias"] = temp_biases.copy()
+        neuron_list.append(temp_dict.copy())
+        temp_weights.clear()
+        temp_biases.clear()
+        temp_dict.clear()
+
+    return neuron_list # layer
+
+
+def create_model_object(model: object) -> object:
+    """
+    Function which creates a model object from a
+    collection of layers instantiated with layer
+    objects (neuron lists).
+    """
+    model_object = {}
+    weights, biases = create_paramater_arrays(model=model)
+    for x, layer in enumerate(weights):
+        model_object[f"layer_{x}"] = create_layer_object(weights[x], biases[x])
+    return model_object
+    
+
+
+def export_to_json(model: object, filename: str = "model", indent: int = 4):
+    """
+    Function which exports a passed model
+    object to a JSON file.
+    """
+    model_object = create_model_object(model)
+    json_object = json.dumps(obj=model_object, indent=indent)
+    with open(append_extension(filename=filename, extension="json"), "w") as outfile:
+        outfile.write(json_object)
+
 
 
 # Model classes
@@ -292,8 +374,4 @@ class ICARNetwork(nn.Module):
 
 model = FFNetwork()
 
-
-# print(append_extension("weights model", "txt"))
-print(f"Number of parameters: {calculate_params(model=model, param_type='wbt')}")
-
-# generate_filename()
+export_to_json(model)
