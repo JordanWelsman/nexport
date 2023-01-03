@@ -173,6 +173,7 @@ def create_paramater_arrays(model:object) -> tuple:
         else: # if odd (bias)
             biases.append(model_dictionary[item])
 
+    print(f"{c.CYAN}Successfully extracted parameters.{c.DEFAULT}")
     return weights, biases
 
 
@@ -211,8 +212,9 @@ def create_model_object(model: object) -> object:
     weights, biases = create_paramater_arrays(model=model)
     for x, layer in enumerate(weights):
         model_object[f"layer_{x}"] = create_layer_object(weights[x], biases[x])
-    return model_object
     
+    print(f"{c.LIGHTYELLOW}Successfully created model object.{c.DEFAULT}")
+    return model_object
 
 
 def export_to_json(model: object, filename: str = "model", indent: int = 4):
@@ -224,6 +226,7 @@ def export_to_json(model: object, filename: str = "model", indent: int = 4):
     json_object = json.dumps(obj=model_object, indent=indent)
     with open(append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write(json_object)
+    print(f"{c.GREEN}Exported model to {c.LIGHTGREEN}'{append_extension(filename=filename, extension='json')}'{c.GREEN}!{c.DEFAULT}")
 
 
 
@@ -372,6 +375,6 @@ class ICARNetwork(nn.Module):
 
 # Runtime environment
 
-model = FFNetwork()
+model = ICARNetwork()
 
 export_to_json(model)
