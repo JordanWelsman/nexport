@@ -4,7 +4,9 @@ import numpy as np
 import datetime as dt
 import torch as torch
 from torch import nn
+import os
 import json
+import datetime as dt
 import time as t
 
 # File imports
@@ -186,48 +188,72 @@ def create_layer_object(weights: list, biases: list) -> list:
     """
     neuron_list = []
     temp_weights = []
-    temp_biases = []
+    temp_bias = 0
     temp_dict = {}
     
     # Loop which creates a layer as a list from parameter arrays
     for i in range(len(weights)):
         for j in weights[i]:
             temp_weights.append(j.item())
-        temp_biases.append(biases[i].item())
+        temp_bias = biases[i].item()
         temp_dict["weights"] = temp_weights.copy()
-        temp_dict["bias"] = temp_biases.copy()
+        temp_dict["bias"] = temp_bias
         neuron_list.append(temp_dict.copy())
         temp_weights.clear()
-        temp_biases.clear()
         temp_dict.clear()
 
     return neuron_list # return constructed layer
 
 
-def create_model_object(model: object) -> object:
+def create_model_metadata(model_name: str, model_author: str = None) -> dict:
+    model_metadata = {
+        "modelName": model_name,
+        "modelAuthor": model_author,
+        "compilationDate": str(dt.datetime.now())
+    }
+
+    return model_metadata # return model metadata object
+
+
+def create_model_object(model: object, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> object:
     """
     Function which creates a model object from a
     collection of layers instantiated with layer
     objects (neuron lists).
     """
+    hidden_layers = []
+    output_layer = []
     model_object = {}
     weights, biases = create_paramater_arrays(model=model)
 
+    if include_metadata: # insert model metadata into model object
+        model_object["model"] = create_model_metadata(model_name=model_name, model_author=model_author)
+
     # Loop which creates a network object from a series of single-layer lists
     for x, layer in enumerate(weights):
-        model_object[f"layer_{x}"] = create_layer_object(weights[x], biases[x])
+        if x != len(weights)-1:
+            hidden_layers.append(create_layer_object(weights=weights[x], biases=biases[x]))
+        else:
+            output_layer = create_layer_object(weights=weights[x], biases=biases[x])
     
+    model_object["hidden_layers"] = hidden_layers
+    model_object["output_layer"] = output_layer
+
     print(f"{c.LIGHTYELLOW}Successfully created model object.{c.DEFAULT}")
 
     return model_object # return constructed network
 
 
-def export_to_json(model: object, filename: str = "model", indent: int = 4):
+def export_to_json(model: object, filename: str = "model", indent: int = 4, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()):
     """
     Function which exports a passed model
     object to a JSON file.
     """
-    model_object = create_model_object(model)
+    model_object = {}
+    if include_metadata:
+        model_object = create_model_object(model=model, include_metadata=include_metadata, model_name=model_name, model_author=model_author)
+    else:
+        model_object = create_model_object(model=model)
     json_object = json.dumps(obj=model_object, indent=indent)
     with open(append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write(json_object)
@@ -383,7 +409,7 @@ class ICARNetwork(nn.Module):
 model = FFNetwork()
 
 t1 = t.time()
-export_to_json(model)
+export_to_json(model, include_metadata=True)
 t2 = t.time()
 time = t2 - t1
 print(f"{c.RED}Time taken: {c.LIGHTRED}{round(time, 2)}{c.RED}s!{c.DEFAULT}")
