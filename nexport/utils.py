@@ -5,6 +5,7 @@ import datetime as dt
 import torch as torch
 from torch import nn
 import json
+import time as t
 
 # File imports
 from colors import color as c
@@ -174,7 +175,8 @@ def create_paramater_arrays(model:object) -> tuple:
             biases.append(model_dictionary[item])
 
     print(f"{c.CYAN}Successfully extracted parameters.{c.DEFAULT}")
-    return weights, biases
+
+    return weights, biases # return weights & biases as tuple
 
 
 def create_layer_object(weights: list, biases: list) -> list:
@@ -187,7 +189,7 @@ def create_layer_object(weights: list, biases: list) -> list:
     temp_biases = []
     temp_dict = {}
     
-    # Loop which creates a layer object from parameter arrays
+    # Loop which creates a layer as a list from parameter arrays
     for i in range(len(weights)):
         for j in weights[i]:
             temp_weights.append(j.item())
@@ -199,7 +201,7 @@ def create_layer_object(weights: list, biases: list) -> list:
         temp_biases.clear()
         temp_dict.clear()
 
-    return neuron_list # layer
+    return neuron_list # return constructed layer
 
 
 def create_model_object(model: object) -> object:
@@ -210,11 +212,14 @@ def create_model_object(model: object) -> object:
     """
     model_object = {}
     weights, biases = create_paramater_arrays(model=model)
+
+    # Loop which creates a network object from a series of single-layer lists
     for x, layer in enumerate(weights):
         model_object[f"layer_{x}"] = create_layer_object(weights[x], biases[x])
     
     print(f"{c.LIGHTYELLOW}Successfully created model object.{c.DEFAULT}")
-    return model_object
+
+    return model_object # return constructed network
 
 
 def export_to_json(model: object, filename: str = "model", indent: int = 4):
@@ -375,6 +380,10 @@ class ICARNetwork(nn.Module):
 
 # Runtime environment
 
-model = ICARNetwork()
+model = FFNetwork()
 
+t1 = t.time()
 export_to_json(model)
+t2 = t.time()
+time = t2 - t1
+print(f"{c.RED}Time taken: {c.LIGHTRED}{round(time, 2)}{c.RED}s!{c.DEFAULT}")
