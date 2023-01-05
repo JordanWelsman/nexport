@@ -160,7 +160,7 @@ def import_from_file(filepath: str, framework: str = "PyTorch", architecture: st
         model_biases[x] = model_biases[x].astype(np.float)
 
 
-def create_paramater_arrays(model:object) -> tuple:
+def create_paramater_arrays(model:object, verbose: int = 1) -> tuple:
     """
     Function which splits a model's state_dict into weight
     and bias arrays and returns them for indexing elsewhere.
@@ -176,12 +176,13 @@ def create_paramater_arrays(model:object) -> tuple:
         else: # if odd (bias)
             biases.append(model_dictionary[item])
 
-    print(f"{c.CYAN}Successfully extracted parameters.{c.DEFAULT}")
+    if verbose >= 2: # if verbose set to at least 1
+        print(f"{c.RED}Successfully extracted {c.LIGHTRED}parameters.{c.DEFAULT}")
 
     return weights, biases # return weights & biases as tuple
 
 
-def create_layer_object(weights: list, biases: list) -> list:
+def create_layer_object(weights: list, biases: list, verbose: int = 1) -> list:
     """
     Function which constructs a single layer from
     parameter arrays and returns it as a list of neurons.
@@ -202,6 +203,9 @@ def create_layer_object(weights: list, biases: list) -> list:
         temp_weights.clear()
         temp_dict.clear()
 
+    if verbose >= 3: # if verbose set to at least 2
+        print(f"{c.LIGHTYELLOW}    Layer created.{c.DEFAULT}")
+
     return neuron_list # return constructed layer
 
 
@@ -215,7 +219,7 @@ def create_model_metadata(model_name: str, model_author: str = None) -> dict:
     return model_metadata # return model metadata object
 
 
-def create_model_object(model: object, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> object:
+def create_model_object(model: object, verbose: int = 1, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> object:
     """
     Function which creates a model object from a
     collection of layers instantiated with layer
@@ -224,40 +228,52 @@ def create_model_object(model: object, include_metadata: bool = None, model_name
     hidden_layers = []
     output_layer = []
     model_object = {}
-    weights, biases = create_paramater_arrays(model=model)
+    weights, biases = create_paramater_arrays(model=model, verbose=verbose)
 
     if include_metadata: # insert model metadata into model object
         model_object["model"] = create_model_metadata(model_name=model_name, model_author=model_author)
 
+    if verbose >= 3: # if verbose set to at least 2
+        print(f"{c.YELLOW}Creating layers...{c.DEFAULT}")
+
     # Loop which creates a network object from a series of single-layer lists
     for x, layer in enumerate(weights):
         if x != len(weights)-1:
-            hidden_layers.append(create_layer_object(weights=weights[x], biases=biases[x]))
+            hidden_layers.append(create_layer_object(weights=weights[x], biases=biases[x], verbose=verbose))
         else:
-            output_layer = create_layer_object(weights=weights[x], biases=biases[x])
+            output_layer = create_layer_object(weights=weights[x], biases=biases[x], verbose=verbose)
     
     model_object["hidden_layers"] = hidden_layers
     model_object["output_layer"] = output_layer
 
-    print(f"{c.LIGHTYELLOW}Successfully created model object.{c.DEFAULT}")
+    if verbose >= 2: # if verbose set to at least 1
+        print(f"{c.GREEN}Successfully created {c.LIGHTGREEN}model object.{c.DEFAULT}")
 
     return model_object # return constructed network
 
 
-def export_to_json(model: object, filename: str = "model", indent: int = 4, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()):
+def export_to_json(model: object, filename: str = "model", indent: int = 4, verbose: int = 1, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()):
     """
     Function which exports a passed model
     object to a JSON file.
     """
+    t1 = t.time()
     model_object = {}
     if include_metadata:
-        model_object = create_model_object(model=model, include_metadata=include_metadata, model_name=model_name, model_author=model_author)
+        model_object = create_model_object(model=model, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author)
     else:
         model_object = create_model_object(model=model)
     json_object = json.dumps(obj=model_object, indent=indent)
     with open(append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write(json_object)
-    print(f"{c.GREEN}Exported model to {c.LIGHTGREEN}'{append_extension(filename=filename, extension='json')}'{c.GREEN}!{c.DEFAULT}")
+
+    t2 = t.time()
+    time = t2 - t1
+
+    if verbose >= 1: # if verbose set to at least 1
+        print(f"{c.CYAN}Exported model to {c.LIGHTCYAN}'{append_extension(filename=filename, extension='json')}'{c.CYAN}!{c.DEFAULT}")
+    if verbose >= 2: # if verbose set to at least 2
+        print(f"{c.MAGENTA}    Time taken: {c.LIGHTMAGENTA}{round(time, 2)}{c.MAGENTA}s{c.DEFAULT}")
 
 
 
@@ -407,9 +423,4 @@ class ICARNetwork(nn.Module):
 # Runtime environment
 
 model = FFNetwork()
-
-t1 = t.time()
-export_to_json(model, include_metadata=True)
-t2 = t.time()
-time = t2 - t1
-print(f"{c.RED}Time taken: {c.LIGHTRED}{round(time, 2)}{c.RED}s!{c.DEFAULT}")
+export_to_json(model, verbose=1, include_metadata=True)
