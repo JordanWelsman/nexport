@@ -16,3 +16,8 @@ class color:
     LIGHTMAGENTA =  '\033[95m'
     LIGHTCYAN =     '\033[96m'
     WHITE =         '\033[97m'
+
+    def test():
+        print(f"{color.DEFAULT}█{color.BLACK}█{color.DARKGRAY}█{color.LIGHTGRAY}█{color.WHITE}█")
+        print(f"{color.RED}█{color.GREEN}█{color.YELLOW}█{color.BLUE}█{color.MAGENTA}█{color.CYAN}█")
+        print(f"{color.LIGHTRED}█{color.LIGHTGREEN}█{color.LIGHTYELLOW}█{color.LIGHTBLUE}█{color.LIGHTMAGENTA}█{color.LIGHTCYAN}█{color.DEFAULT}")
