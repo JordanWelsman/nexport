@@ -418,9 +418,3 @@ class ICARNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 10)
         )
-
-
-# Runtime environment
-
-model = FFNetwork()
-export_to_json(model, verbose=1, include_metadata=True)
