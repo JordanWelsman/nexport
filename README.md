@@ -103,7 +103,7 @@ This package is intended to be used in conjunction with [inference-engine](https
 # Credits
 
 `nexport` was created and is currently maintained by **Jordan Welsman**.
-This project was based on prior work by **Tan Nguyen**.
+Parts of this project were based on prior work by **[Tan Nguyen](mailto:TanNguyen@lbl.gov)**.
 
 # License
 
@@ -119,6 +119,6 @@ This project was based on prior work by **Tan Nguyen**.
 
 :briefcase: [Connect with me on Linkedin](https://linkedin.com/in/JordanWelsman/)
 
-:email: [Send me an email](mailto:welsman@lbl.com)
+:email: [Send me an email](mailto:welsman@lbl.gov)
 
 :thought_balloon: [Based on this project](https://github.com/tannguyen153/icar_pt)
