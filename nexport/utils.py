@@ -10,8 +10,10 @@ import datetime as dt
 import time as t
 
 # File imports
-from colors import color as c
+from nexport.colors import Color as c
 
+# External function visibility
+__all__ = ['calculate_params', 'export_to_file', 'import_from_file', 'export_to_json', 'FFNetwork', 'BFNetwork', 'ICARNetwork']
 
 # Module functions
 

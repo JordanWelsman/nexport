@@ -1,4 +1,4 @@
-from nexport import utils
+import nexport
 
-model = utils.FFNetwork()
-utils.export_to_json(model, verbose=2, include_metadata=True)
+model = nexport.FFNetwork()
+nexport.export_to_json(model, verbose=1, include_metadata=True)

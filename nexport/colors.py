@@ -1,4 +1,4 @@
-class color:
+class Color:
     DEFAULT =       '\033[39m'
     BLACK =         '\033[30m'
     RED =           '\033[31m'
@@ -18,6 +18,6 @@ class color:
     WHITE =         '\033[97m'
 
     def test():
-        print(f"{color.DEFAULT}█{color.BLACK}█{color.DARKGRAY}█{color.LIGHTGRAY}█{color.WHITE}█")
-        print(f"{color.RED}█{color.GREEN}█{color.YELLOW}█{color.BLUE}█{color.MAGENTA}█{color.CYAN}█")
-        print(f"{color.LIGHTRED}█{color.LIGHTGREEN}█{color.LIGHTYELLOW}█{color.LIGHTBLUE}█{color.LIGHTMAGENTA}█{color.LIGHTCYAN}█{color.DEFAULT}")
+        print(f"{Color.DEFAULT}█{Color.BLACK}█{Color.DARKGRAY}█{Color.LIGHTGRAY}█{Color.WHITE}█")
+        print(f"{Color.RED}█{Color.GREEN}█{Color.YELLOW}█{Color.BLUE}█{Color.MAGENTA}█{Color.CYAN}█")
+        print(f"{Color.LIGHTRED}█{Color.LIGHTGREEN}█{Color.LIGHTYELLOW}█{Color.LIGHTBLUE}█{Color.LIGHTMAGENTA}█{Color.LIGHTCYAN}█{Color.DEFAULT}")
