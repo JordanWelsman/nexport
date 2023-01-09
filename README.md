@@ -12,7 +12,8 @@
 
 - [Overview](#overview)
 - [Table of contents](#table-of-contents)
-- [Install & use](#install--use)
+- [Current support](#current-support)
+- [Install \& use](#install--use)
   - [Test](#test)
   - [Build](#build)
 - [Objectives](#objectives)
@@ -25,6 +26,15 @@
 - [Credits](#credits)
 - [License](#license)
 - [Links](#links)
+
+# Current support
+
+| Filetype       | PyTorch            | Keras/TensorFlow |
+| -------------: | :----------------: | :--------------: |
+| Text (`.txt`)  | :white_check_mark: | :construction:   |
+| JSON (`.json`) | :white_check_mark: | :x:              |
+| CSV (`.csv`)   | :x:                | :x:              |
+| XML (`.xml`)   | :x:                | :x:              |
 
 # Install & use
 
@@ -62,7 +72,7 @@
 - Learn `PyTorch`
 - Understand how `PyTorch` and `Keras` construct neural networks
 - Learn how to publish a python package
-- Create a pseudo-pipeline between `Python` and `Fortran` projects (`PyTorch`-`nexport`-`inference-engine`)
+- Create a pseudo-pipeline between `Python` frameworks and `Fortran` projects (`PyTorch/Keras`-`nexport`-`inference-engine`)
 - Write a paper on this software
 
 # History
@@ -109,6 +119,6 @@ This project was based on prior work by **Tan Nguyen**.
 
 :briefcase: [Connect with me on Linkedin](https://linkedin.com/in/JordanWelsman/)
 
-:email: [Send me an email](mailto:jordan.welsman@outlook.com)
+:email: [Send me an email](mailto:welsman@lbl.com)
 
 :thought_balloon: [Based on this project](https://github.com/tannguyen153/icar_pt)
