@@ -83,7 +83,7 @@ def calculate_params(model: object, param_type: str = "t") -> list:
             raise Exception(f"{c.MAGENTA}Unsupported parameter type:{c.DEFAULT} {other}. {c.LIGHTRED}Please enter valid parameter types.{c.DEFAULT}")
 
 
-def export_to_file(model: object, filename: str) -> None:
+def export_to_file(model: object, filename: str = "model") -> None:
     """
     Function which exports all weight
     and bias arrays to a file.
