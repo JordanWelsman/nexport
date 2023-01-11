@@ -254,7 +254,7 @@ def create_model_object(model: object, verbose: int = 1, include_metadata: bool 
     return model_object # return constructed network
 
 
-def export_to_json(model: object, filename: str = "model", indent: int = 4, verbose: int = 1, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()):
+def export_to_json(model: object, filename: str = "model", indent: int = 4, verbose: int = 1, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()) -> None:
     """
     Function which exports a passed model
     object to a JSON file.
