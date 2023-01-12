@@ -11,6 +11,7 @@ nexport/nexport.egg-info/
 model.csv
 model.json
 model.txt
+test.py
 weights_and_biases.csv
 weights_and_biases.json
 weights_and_biases.txt
