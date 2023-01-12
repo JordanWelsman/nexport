@@ -3,7 +3,7 @@
 .vscode/
 __pycache__/
 build/
-dist
+dist/
 test/__pycache__/
 nexport/__pycache__/
 nexport/nexport.egg-info/
