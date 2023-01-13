@@ -4,6 +4,18 @@
  |  \_| |______ _/   \_ |       |_____| |    \_    |   
 ```
 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport)
+![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport)
+![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport)
+![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport)
+
+![PyPI](https://img.shields.io/pypi/v/nexport)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nexport)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nexport)
+![PyPI - Status](https://img.shields.io/pypi/status/nexport)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/nexport)
+
 # Overview
 
 `nexport` is a lightweight `python 3` package which enables neural network developers to export the weights and biases of trained networks to useful file types.

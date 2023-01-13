@@ -2,4 +2,5 @@
 .pytest_cache
 .vscode
 test/__pycache__
+test.py
 weights_and_biases.txt
