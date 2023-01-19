@@ -3,6 +3,7 @@ from setuptools import setup
 
 # Arguments
 version = "0.2.2"
+python_version = ">=3.10"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
@@ -22,15 +23,21 @@ setup(
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
+        'Intended Audience :: Education',
+        'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.10',
         'Topic :: Scientific/Engineering :: Artificial Intelligence'
     ],
     package_dir = {'': 'nexport'},
+    install_requires = [
+        "torch",
+        "jutils"
+    ],
     extras_require = {
         "dev": [
-            "pytest >= 7.1",
-        ],
+            "pytest"
+        ]
     },
 )
