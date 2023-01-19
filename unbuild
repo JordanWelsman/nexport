@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# jutils Unbuild Script
+# To be used to delete the directories & files created by `python setup.py bdist_wheel`.
+
+# Author : Jordan Welsman
+# Copyright : Jordan Welsman
+
+echo "You are about to delete files & folders from jutils."
+echo "These files are crucial to the ability to install and import jutils."
+read -p "Do you want to continue? [Y/n]: "
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    rm -rf build # remove build directory if exists
+    rm -rf dist # remove distribution directory if exists
+    rm -rf nexport/nexport.egg-info # remove egg info directory if exists
+    find . -name __pycache__ -type d -print0|xargs -0 rm -r -- # remove all pycache directories
+    echo "Project successfully unbuilt."
+else
+    echo "Operation aborted."
+fi
