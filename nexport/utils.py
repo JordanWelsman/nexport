@@ -2,8 +2,6 @@
 from torch import nn
 import numpy as np
 import datetime as dt
-import torch as torch
-from torch import nn
 import os
 import json
 import datetime as dt
@@ -13,7 +11,8 @@ import time as t
 from nexport.colors import Color as c
 
 # External function visibility
-__all__ = ['calculate_params', 'export_to_file', 'import_from_file', 'export_to_json', 'FFNetwork', 'BFNetwork', 'ICARNetwork']
+__all__ = ['export_to_file', 'import_from_file', 'export_to_json', 'FFNetwork', 'BFNetwork', 'ICARNetwork']
+
 
 # Module functions
 
@@ -276,7 +275,6 @@ def export_to_json(model: object, filename: str = "model", indent: int = 4, verb
         print(f"{c.CYAN}Exported model to {c.LIGHTCYAN}'{append_extension(filename=filename, extension='json')}'{c.CYAN}!{c.DEFAULT}")
     if verbose >= 2: # if verbose set to at least 2
         print(f"{c.MAGENTA}    Time taken: {c.LIGHTMAGENTA}{round(time, 2)}{c.MAGENTA}s{c.DEFAULT}")
-
 
 
 # Model classes
