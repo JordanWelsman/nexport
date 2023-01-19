@@ -40,9 +40,18 @@ def calculate_params(model: object, param_types: str = "wbt") -> list:
     return param_list
 
 
-def calculate_layers() -> None:
-    pass
+def calculate_layers(model: object, include_io: bool = True) -> int:
+    """
+    Calculate & return model's layer count.
+    """
+
+    model_dictionary = model.state_dict()
+
+    if include_io:
+        return int(len(model_dictionary.keys()) / 2) + 1
+    else:
+        return int(len(model_dictionary.keys()) / 2) - 1
 
 
-def calculate_neurons() -> None:
+def calculate_neurons(model_object) -> int:
     pass
