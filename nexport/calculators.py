@@ -53,5 +53,24 @@ def calculate_layers(model: object, include_io: bool = True) -> int:
         return int(len(model_dictionary.keys()) / 2) - 1
 
 
-def calculate_neurons(model_object) -> int:
-    pass
+def calculate_neurons(model: object, include_io: bool = True) -> int:
+    """
+    Calculate & return model's neuron count.
+    """
+
+    model_dictionary = model.state_dict()
+    input_neurons = len(list(model_dictionary.values())[0][0])
+    hidden_neurons = 0
+    output_neurons = len(list(model_dictionary.values())[-1])
+
+    for x, item in enumerate(model_dictionary):
+        if x % 2 == 0: # if even (weight)
+            pass
+        else: # if odd (bias)
+            hidden_neurons += len(model_dictionary[item])
+    
+    if include_io:
+        hidden_neurons -= output_neurons
+        return input_neurons + hidden_neurons + output_neurons
+    else:
+        return hidden_neurons - output_neurons
