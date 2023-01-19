@@ -6,4 +6,4 @@ from .utils import *
 
 # Only show functions specified in
 # utils.__all__ to the outside world.
-__all__ = calculators.__all__, models.__al__, utils.__all__
+__all__ = calculators.__all__, models.__all__, utils.__all__
