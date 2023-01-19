@@ -2,7 +2,7 @@
 from setuptools import setup
 
 # Arguments
-version = "0.2.2"
+version = "0.3.0"
 python_version = ">=3.10"
 
 # Long description from README.md
@@ -19,21 +19,28 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://github.com/JordanWelsman/nexport/',
-    py_modules = ["__init__", "colors", "utils"],
+    py_modules = ["__init__", "calculators", "colors", "models", "utils"],
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
+        'Natural Language :: English',
         'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.10',
-        'Topic :: Scientific/Engineering :: Artificial Intelligence'
+        'Programming Language :: Python :: 3.11',
+        'Topic :: Scientific/Engineering :: Artificial Intelligence',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Utilities'
     ],
     package_dir = {'': 'nexport'},
     install_requires = [
-        "torch",
-        "jutils"
+        "jutils",
+        "numpy",
+        "torch"
     ],
     extras_require = {
         "dev": [
