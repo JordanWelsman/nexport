@@ -4,6 +4,18 @@
  |  \_| |______ _/   \_ |       |_____| |    \_    |   
 ```
 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport)
+![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport)
+![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport)
+![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport)
+
+![PyPI](https://img.shields.io/pypi/v/nexport)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nexport)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nexport)
+![PyPI - Status](https://img.shields.io/pypi/status/nexport)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/nexport)
+
 # Overview
 
 `nexport` is a lightweight `python 3` package which enables neural network developers to export the weights and biases of trained networks to useful file types.
@@ -12,7 +24,8 @@
 
 - [Overview](#overview)
 - [Table of contents](#table-of-contents)
-- [Install & use](#install--use)
+- [Current support](#current-support)
+- [Install \& use](#install--use)
   - [Test](#test)
   - [Build](#build)
 - [Objectives](#objectives)
@@ -25,6 +38,15 @@
 - [Credits](#credits)
 - [License](#license)
 - [Links](#links)
+
+# Current support
+
+| Filetype       | PyTorch            | Keras/TensorFlow |
+| -------------: | :----------------: | :--------------: |
+| Text (`.txt`)  | :white_check_mark: | :construction:   |
+| JSON (`.json`) | :white_check_mark: | :x:              |
+| CSV (`.csv`)   | :x:                | :x:              |
+| XML (`.xml`)   | :x:                | :x:              |
 
 # Install & use
 
@@ -62,7 +84,7 @@
 - Learn `PyTorch`
 - Understand how `PyTorch` and `Keras` construct neural networks
 - Learn how to publish a python package
-- Create a pseudo-pipeline between `Python` and `Fortran` projects (`PyTorch`-`nexport`-`inference-engine`)
+- Create a pseudo-pipeline between `Python` frameworks and `Fortran` projects (`PyTorch/Keras`-`nexport`-`inference-engine`)
 - Write a paper on this software
 
 # History
@@ -93,7 +115,7 @@ This package is intended to be used in conjunction with [inference-engine](https
 # Credits
 
 `nexport` was created and is currently maintained by **Jordan Welsman**.
-This project was based on prior work by **Tan Nguyen**.
+Parts of this project were based on prior work by **[Tan Nguyen](mailto:TanNguyen@lbl.gov)**.
 
 # License
 
@@ -109,6 +131,6 @@ This project was based on prior work by **Tan Nguyen**.
 
 :briefcase: [Connect with me on Linkedin](https://linkedin.com/in/JordanWelsman/)
 
-:email: [Send me an email](mailto:jordan.welsman@outlook.com)
+:email: [Send me an email](mailto:welsman@lbl.gov)
 
 :thought_balloon: [Based on this project](https://github.com/tannguyen153/icar_pt)
