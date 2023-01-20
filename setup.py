@@ -2,7 +2,7 @@
 from setuptools import setup
 
 # Arguments
-version = "0.3.0"
+version = "0.4.0"
 python_version = ">=3.10"
 
 # Long description from README.md
