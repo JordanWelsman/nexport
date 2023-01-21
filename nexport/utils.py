@@ -24,20 +24,15 @@ def detect_framework(imported: object = sys.modules.keys()) -> str:
         "torch": "pytorch",
         "tensorflow": "tensorflow"
     }
-    print(frameworks)
 
-    if framework := "torch" in imported:
-        if framework := "tensorflow" in imported:
-            print("both frameworks imported.")
-            return "both"
-        print("torch detected!")
-        return frameworks['torch']
-    elif framework := "tensorflow" in imported:
-        print("tensorflow detected!")
-        return frameworks['tensorflow']
+    detected_module = [module for module in frameworks.keys() if module in imported]
+    
+    if len(detected_module) == 1:
+        return frameworks[detected_module[0]]
+    elif len(detected_module) > 1:
+        return "multiple"
     else:
-        print("no framework imported...")
-        return "unknown"
+        return "none"
 
 
 def export(model: object, filetype: str, filename: str = "model", indent: int = 4, verbose: int = 1, include_metadata: bool = False, model_name: str = "My Model", model_author: str = os.getlogin()):
