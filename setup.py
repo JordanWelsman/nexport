@@ -39,11 +39,16 @@ setup(
     install_requires = [
         "jutils",
         "numpy",
-        "torch"
     ],
     extras_require = {
         "dev": [
             "pytest"
+        ],
+        "pytorch": [
+            "torch"
+        ],
+        "tensorflow": [
+            "tensorflow"
         ]
     },
 )
