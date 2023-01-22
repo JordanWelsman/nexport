@@ -40,7 +40,7 @@
 - [Links](#links)
 
 # Current support
-<!-->
+<!--
 | Filetype       | PyTorch            | Keras/TensorFlow |
 | -------------: | :----------------: | :--------------: |
 | Text (`.txt`)  | :white_check_mark: | :construction:   |
