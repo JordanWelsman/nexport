@@ -40,13 +40,56 @@
 - [Links](#links)
 
 # Current support
-
+<!-->
 | Filetype       | PyTorch            | Keras/TensorFlow |
 | -------------: | :----------------: | :--------------: |
 | Text (`.txt`)  | :white_check_mark: | :construction:   |
 | JSON (`.json`) | :white_check_mark: | :x:              |
 | CSV (`.csv`)   | :x:                | :x:              |
 | XML (`.xml`)   | :x:                | :x:              |
+-->
+<!-- Ugly HTML table -->
+<table>
+  <tr>
+    <th rowspan=2>Filetype</th>
+    <th colspan=2>PyTorch</th>
+    <th colspan=2>Keras/TensorFlow</th>
+  </tr>
+  <tr>
+    <th>Export</th>
+    <th>Import</th>
+    <th>Export</th>
+    <th>Import</th>
+  </tr>
+  <tr>
+    <td>Text (.txt)</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>🚧</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>JSON (.json)</td>
+    <td>✅</td>
+    <td>🚧</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>CSV (.csv)</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>XML (.xml)</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+</table>
 
 # Install & use
 
