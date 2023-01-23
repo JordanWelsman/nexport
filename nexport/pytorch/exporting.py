@@ -88,7 +88,7 @@ def create_layer_object(weights: list, biases: list, verbose: int = None) -> lis
         temp_weights.clear()
         temp_dict.clear()
 
-    if verbose >= 3: # if verbose set to at least 2
+    if verbose >= 3: # if verbose set to at least 3
         print(f"{c.LIGHTYELLOW}    Layer created.{c.DEFAULT}")
 
     return neuron_list # return constructed layer
@@ -118,7 +118,7 @@ def create_model_object(model: object, verbose: int = None, include_metadata: bo
     if include_metadata: # insert model metadata into model object
         model_object["model"] = create_model_metadata(model_name=model_name, model_author=model_author)
 
-    if verbose >= 3: # if verbose set to at least 2
+    if verbose >= 3: # if verbose set to at least 3
         print(f"{c.YELLOW}Creating layers...{c.DEFAULT}")
 
     # Loop which creates a network object from a series of single-layer lists
@@ -131,7 +131,7 @@ def create_model_object(model: object, verbose: int = None, include_metadata: bo
     model_object["hidden_layers"] = hidden_layers
     model_object["output_layer"] = output_layer
 
-    if verbose >= 2: # if verbose set to at least 1
+    if verbose >= 2: # if verbose set to at least 2
         print(f"{c.GREEN}Successfully created {c.LIGHTGREEN}model object.{c.DEFAULT}")
 
     return model_object # return constructed network
