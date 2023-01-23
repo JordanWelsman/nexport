@@ -20,4 +20,4 @@ def append_extension(filename: str, extension: str) -> str:
         case "xml":
             return filename + ".xml"
         case other:
-            raise Exception(f"Unsupported filetype: {other}. Please enter valid filetype.")
+            raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
