@@ -11,13 +11,7 @@ def append_extension(filename: str, extension: str) -> str:
     """
     filename = filename.replace(' ', '_')
     match extension:
-        case "txt":
-            return filename + ".txt"
-        case "json":
-            return filename + ".json"
-        case "csv":
-            return filename + ".csv"
-        case "xml":
-            return filename + ".xml"
+        case "txt" | "json" | "csv" | "xml":
+            return filename + "." + extension
         case other:
             raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
