@@ -38,7 +38,7 @@ setup(
     package_dir = {'': 'nexport'},
     install_requires = [
         "jutils",
-        "numpy",
+        "numpy<1.24",
     ],
     extras_require = {
         "dev": [
