@@ -1,3 +1,7 @@
+# Module imports
+import numpy as np
+import torch.nn
+
 # External function visibility
 __all__ = ['import_from_file']
 
