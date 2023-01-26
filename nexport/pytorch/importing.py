@@ -4,7 +4,7 @@ import torch
 from torch import nn
 
 # External function visibility
-__all__ = ['import_from_file']
+__all__ = ['import_from_file', 'import_from_json']
 
 
 # Module functions
@@ -121,3 +121,7 @@ def import_from_file(filepath: str) -> object:
 
     network = Model(50)
     return network
+
+
+def import_from_json(filepath: str) -> object:
+    pass
