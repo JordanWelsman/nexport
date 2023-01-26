@@ -186,19 +186,25 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
                 outfile.write(f"{indent}\"{key}\": [\n")
                 for layer in model_object[key]:
                     outfile.write(f"{indent}{indent}[\n")
-                    for neuron in layer:
+                    for y, neuron in enumerate(layer):
                         outfile.write(f"{indent}{indent}{indent}" + "{\n")
                         for key in neuron.keys():
                             if key == "weights":
                                 outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": [")
-                                for parameter in neuron[key]:
-                                    outfile.write(f"{parameter}, ")
+                                for z, parameter in enumerate(neuron[key]):
+                                    if z < len(neuron[key]) - 1:
+                                        outfile.write(f"{parameter}, ") # weight array
+                                    else:
+                                        outfile.write(f"{parameter}") # last weight array element
                                 outfile.write(f"],\n")
                             if key == "bias":
                                 outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
-                        outfile.write(f"{indent}{indent}{indent}" + "},\n")
-                    outfile.write(f"{indent}{indent}],\n")
-                outfile.write(f"{indent}],\n")
+                        if y < len(layer) - 1:
+                            outfile.write(f"{indent}{indent}{indent}" + "},\n") # end of neuron
+                        else:
+                            outfile.write(f"{indent}{indent}{indent}" + "}\n") # last neuron array element
+                    outfile.write(f"{indent}{indent}],\n") # end of layer
+                outfile.write(f"{indent}],\n") # end of hidden layer array
             if key == "output_layer":
                 outfile.write(f"{indent}\"{key}\": [\n")
                 for neuron in model_object[key]:
@@ -206,8 +212,11 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
                     for key in neuron.keys():
                         if key == "weights":
                             outfile.write(f"{indent}{indent}{indent}\"{key}\": [")
-                            for parameter in neuron[key]:
-                                outfile.write(f"{parameter}, ")
+                            for z, parameter in enumerate(neuron[key]):
+                                if z < len(neuron[key]) - 1:
+                                    outfile.write(f"{parameter}, ") # weight array
+                                else:
+                                    outfile.write(f"{parameter}") # last weight array alement
                             outfile.write(f"],\n")
                         if key == "bias":
                             outfile.write(f"{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
