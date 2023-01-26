@@ -43,6 +43,8 @@ def export(model: object, filetype: str, filename: str = "model", indent: int = 
                     npte.export_to_file(model=model, filename=filename)
                 case "json":
                     npte.export_to_json(model=model, filename=filename, indent=indent, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author)
+                case "json_exp":
+                    npte.export_to_json_experimental(model=model, filename=filename, indent=indent, verbose=verbose)
                 case "csv" | "xml":
                     raise NotImplementedError(f"This feature ({filetype} for {nexport.__framework__}) has not yet been implemented.")
                 case other:

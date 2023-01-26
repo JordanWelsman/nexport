@@ -8,7 +8,7 @@ import time as t
 from nexport.colors import Color as c
 
 # External function visibillity
-__all__ = ['export_to_file', 'export_to_json']
+__all__ = ['export_to_file', 'export_to_json', 'export_to_json_experimental']
 
 
 # Module functions
@@ -137,6 +137,13 @@ def create_model_object(model: object, verbose: int = None, include_metadata: bo
     return model_object # return constructed network
 
 
+def new_func():
+    """
+    Template function
+    """
+    pass
+
+
 def export_to_json(model: object, filename: str = None, indent: int = None, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> None:
     """
     Function which exports a passed model
@@ -149,8 +156,64 @@ def export_to_json(model: object, filename: str = None, indent: int = None, verb
     else:
         model_object = create_model_object(model=model, verbose=verbose)
     json_object = json.dumps(obj=model_object, indent=indent)
+
     with open(nexport.append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write(json_object)
+
+    t2 = t.time()
+    time = t2 - t1
+
+    if verbose >= 1: # if verbose set to at least 1
+        print(f"{c.CYAN}Exported model to {c.LIGHTCYAN}'{nexport.append_extension(filename=filename, extension='json')}'{c.CYAN}!{c.DEFAULT}")
+    if verbose >= 2: # if verbose set to at least 2
+        print(f"{c.MAGENTA}    Time taken: {c.LIGHTMAGENTA}{round(time, 2)}{c.MAGENTA}s{c.DEFAULT}")
+
+
+def export_to_json_experimental(model: object, filename: str = None, indent: int = None, verbose: int = None) -> None:
+    """
+    Function which exports a passed
+    model object to a JSON file, but
+    keeps array elements on one line.
+    """
+    t1 = t.time()
+    model_object = create_model_object(model=model, verbose=verbose)
+    indent = "    "
+
+    with open(nexport.append_extension(filename=filename, extension="json"), "w") as outfile:
+        outfile.write("{\n")
+        for key in model_object.keys():
+            if key == "hidden_layers":
+                outfile.write(f"{indent}\"{key}\": [\n")
+                for layer in model_object[key]:
+                    outfile.write(f"{indent}{indent}[\n")
+                    for neuron in layer:
+                        outfile.write(f"{indent}{indent}{indent}" + "{\n")
+                        for key in neuron.keys():
+                            if key == "weights":
+                                outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": [")
+                                for parameter in neuron[key]:
+                                    outfile.write(f"{parameter}, ")
+                                outfile.write(f"],\n")
+                            if key == "bias":
+                                outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
+                        outfile.write(f"{indent}{indent}{indent}" + "},\n")
+                    outfile.write(f"{indent}{indent}],\n")
+                outfile.write(f"{indent}],\n")
+            if key == "output_layer":
+                outfile.write(f"{indent}\"{key}\": [\n")
+                for neuron in model_object[key]:
+                    outfile.write(f"{indent}{indent}" + "{\n")
+                    for key in neuron.keys():
+                        if key == "weights":
+                            outfile.write(f"{indent}{indent}{indent}\"{key}\": [")
+                            for parameter in neuron[key]:
+                                outfile.write(f"{parameter}, ")
+                            outfile.write(f"],\n")
+                        if key == "bias":
+                            outfile.write(f"{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
+                    outfile.write(f"{indent}{indent}" + "}\n")
+                outfile.write(f"{indent}]\n")
+        outfile.write("}")
 
     t2 = t.time()
     time = t2 - t1
