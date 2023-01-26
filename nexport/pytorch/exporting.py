@@ -181,45 +181,50 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
 
     with open(nexport.append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write("{\n")
-        for key in model_object.keys():
-            if key == "hidden_layers":
-                outfile.write(f"{indent}\"{key}\": [\n")
-                for layer in model_object[key]:
+        for layer_type in model_object.keys():
+            if layer_type == "hidden_layers":
+                outfile.write(f"{indent}\"{layer_type}\": [\n")
+                for x, layer in enumerate(model_object[layer_type]):
+                    print(layer_type)
                     outfile.write(f"{indent}{indent}[\n")
                     for y, neuron in enumerate(layer):
                         outfile.write(f"{indent}{indent}{indent}" + "{\n")
-                        for key in neuron.keys():
-                            if key == "weights":
-                                outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": [")
-                                for z, parameter in enumerate(neuron[key]):
-                                    if z < len(neuron[key]) - 1:
+                        for param_type in neuron.keys():
+                            if param_type == "weights":
+                                outfile.write(f"{indent}{indent}{indent}{indent}\"{param_type}\": [")
+                                for z, parameter in enumerate(neuron[param_type]):
+                                    if z < len(neuron[param_type]) - 1:
                                         outfile.write(f"{parameter}, ") # weight array
                                     else:
                                         outfile.write(f"{parameter}") # last weight array element
                                 outfile.write(f"],\n")
-                            if key == "bias":
-                                outfile.write(f"{indent}{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
+                            if param_type == "bias":
+                                outfile.write(f"{indent}{indent}{indent}{indent}\"{param_type}\": {neuron[param_type]}\n")
                         if y < len(layer) - 1:
                             outfile.write(f"{indent}{indent}{indent}" + "},\n") # end of neuron
                         else:
                             outfile.write(f"{indent}{indent}{indent}" + "}\n") # last neuron array element
-                    outfile.write(f"{indent}{indent}],\n") # end of layer
+                    if x < len(model_object[layer_type]) - 1:
+                        outfile.write(f"{indent}{indent}],\n") # end of layer
+                    else:
+                        outfile.write(f"{indent}{indent}]\n") # last layer array element
                 outfile.write(f"{indent}],\n") # end of hidden layer array
-            if key == "output_layer":
-                outfile.write(f"{indent}\"{key}\": [\n")
-                for neuron in model_object[key]:
+            if layer_type == "output_layer":
+                print(layer_type)
+                outfile.write(f"{indent}\"{layer_type}\": [\n")
+                for neuron in model_object[layer_type]:
                     outfile.write(f"{indent}{indent}" + "{\n")
-                    for key in neuron.keys():
-                        if key == "weights":
-                            outfile.write(f"{indent}{indent}{indent}\"{key}\": [")
-                            for z, parameter in enumerate(neuron[key]):
-                                if z < len(neuron[key]) - 1:
+                    for param_type in neuron.keys():
+                        if param_type == "weights":
+                            outfile.write(f"{indent}{indent}{indent}\"{param_type}\": [")
+                            for z, parameter in enumerate(neuron[param_type]):
+                                if z < len(neuron[param_type]) - 1:
                                     outfile.write(f"{parameter}, ") # weight array
                                 else:
                                     outfile.write(f"{parameter}") # last weight array alement
                             outfile.write(f"],\n")
-                        if key == "bias":
-                            outfile.write(f"{indent}{indent}{indent}\"{key}\": {neuron[key]}\n")
+                        if param_type == "bias":
+                            outfile.write(f"{indent}{indent}{indent}\"{param_type}\": {neuron[param_type]}\n")
                     outfile.write(f"{indent}{indent}" + "}\n")
                 outfile.write(f"{indent}]\n")
         outfile.write("}")
