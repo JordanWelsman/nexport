@@ -28,7 +28,7 @@ def import_from_file(filepath: str) -> object:
     for x, line in enumerate(lines):
         if line.startswith("[[") or line.startswith(" ["): # if row of weight array
             print(f"Line {x+1}: Weights for neuron {neuron} of layer {layer}") # broadcast line and key
-            current_weights.append(line.replace("[", "").replace("]", "").split(" ")) # store line in current weight array
+            current_weights.append(line.replace("[", "").replace("]", "").replace(",", "").split(" ")) # store line in current weight array
             while "" in current_weights[-1]:
                 current_weights[-1].remove("")
             if len(lines[x+1]) == 0: # if end of weights
@@ -39,7 +39,7 @@ def import_from_file(filepath: str) -> object:
             
         elif line.startswith("[") and len(lines[x+1]) == 0: # if bias array
             print(f"Line {x+1}: Biases for layer {layer}") # 
-            model_biases.append(line.replace("[", "").replace("]", "").split(" ")) # write line to dictionary using key
+            model_biases.append(line.replace("[", "").replace("]", "").replace(",", "").split(" ")) # write line to dictionary using key
             while "" in model_biases[-1]:
                 model_biases[-1].remove("")
             layer += 1 # increment layer number
@@ -84,7 +84,7 @@ def import_from_file(filepath: str) -> object:
         def forward(self, input):
             return self.activation(self.comp_layer(input))
 
-    class OutputBlock(nn.Module):
+    class OutputBlock(nn.Module): 
         def __init__(self, weights: list, biases: list):
             super(OutputBlock, self).__init__()
             
@@ -105,6 +105,7 @@ def import_from_file(filepath: str) -> object:
             
             self.input_block = InputBlock(weights = model_weights[0], biases = model_biases[0])
             
+            print(f"num_blocks: {num_blocks}")
             self.compute_block = nn.ModuleList([
                 ComputeBlock(weights = model_weights[x+1], biases = model_biases[x+1])
                 for x in range(num_blocks)
