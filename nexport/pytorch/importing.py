@@ -2,12 +2,57 @@
 import numpy as np
 import torch
 from torch import nn
+from nexport import colors as c
+from nexport import models
 
 # External function visibility
-__all__ = ['import_from_file', 'import_from_json']
+__all__ = ['import_from_file', 'import_from_json', "discover_architecture", 'get_activation']
 
 
 # Module functions
+
+def discover_architecture(weight_array: list) -> list:
+    """
+    Function which iterates through and reports
+    passed networks' internal architectures.
+    """
+    architecture: list[list] = []
+    hidden_architecture: list[list] = []
+    binary_activation = "binary_step"
+    sigmoid_activation = "sigmoid"
+
+    # Discover each hidden layer's input & output count
+    for x, layer in enumerate(weight_array):
+        if x == 0:
+            # Discover input/output layer's input & output connection count
+            architecture.append([len(layer[0]), len(layer), sigmoid_activation])
+        elif x == len(weight_array) - 1:
+            # Append hidden weights & discover output layer's input & output connection count
+            architecture.append(hidden_architecture)
+            architecture.append([len(layer[0]), len(layer), sigmoid_activation])
+        else:
+            # Discover output layer's input & output connection count
+            hidden_architecture.append([len(layer[0]), len(layer), sigmoid_activation])
+
+    return architecture
+
+
+def get_activation(activation: str) -> object:
+    """
+    Function which retrieves activation
+    function from model framework or nexport
+    itself depending on passed string.
+    """
+    match activation:
+        case "sigmoid":
+            return nn.Sigmoid()
+        case "relu":
+            return nn.ReLU()
+        case "linear":
+            return nn.Linear()
+        case "binary_step":
+            return models.XORNetwork.StepHS()
+
 
 def import_from_file(filepath: str) -> object:
     """
@@ -56,15 +101,19 @@ def import_from_file(filepath: str) -> object:
     for x, layer in enumerate(model_biases):
         model_biases[x] = np.array(layer)
         model_biases[x] = model_biases[x].astype(np.float)
+    
+    architecture = discover_architecture(weight_array=model_weights)
+    print(f"Model architecture: {c.Color.BLUE}{architecture}{c.Color.DEFAULT}")
 
     class InputBlock(nn.Module):
-        def __init__(self, weights: list, biases: list):
+        def __init__(self, architecture: list, weights: list, biases: list):
             super(InputBlock, self).__init__()
             
-            self.input_layer = nn.Linear(10, 64)
-            self.activation = nn.Sigmoid()
+            self.input_layer = nn.Linear(architecture[0], architecture[1])
+            self.activation = get_activation(architecture[-1])
             
             self.input_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
+            # self.input_layer.weight.data = torch.Tensor(np.array(weights))
             self.input_layer.bias.data = torch.Tensor(biases)
             
             
@@ -72,11 +121,11 @@ def import_from_file(filepath: str) -> object:
             return self.activation(self.input_layer(input))
 
     class ComputeBlock(nn.Module):
-        def __init__(self, weights: list, biases: list):
+        def __init__(self, architecture: list[list], weights: list, biases: list):
             super(ComputeBlock, self).__init__()
             
-            self.comp_layer = nn.Linear(64, 64)
-            self.activation = nn.Sigmoid()
+            self.comp_layer = nn.Linear(architecture[0], architecture[1])
+            self.activation = get_activation(architecture[-1])
             
             self.comp_layer.weight.data = torch.Tensor(weights)
             self.comp_layer.bias.data = torch.Tensor(biases)
@@ -85,13 +134,14 @@ def import_from_file(filepath: str) -> object:
             return self.activation(self.comp_layer(input))
 
     class OutputBlock(nn.Module): 
-        def __init__(self, weights: list, biases: list):
+        def __init__(self, architecture: list, weights: list, biases: list):
             super(OutputBlock, self).__init__()
             
-            self.output_layer = nn.Linear(64, 1)
-            self.activation = nn.Sigmoid()
+            self.output_layer = nn.Linear(architecture[0], architecture[1])
+            self.activation = get_activation(architecture[-1])
             
             self.output_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
+            # self.output_layer.weight.data = torch.Tensor(np.array(weights))
             self.output_layer.bias.data = torch.Tensor(biases)
             
             
@@ -99,18 +149,26 @@ def import_from_file(filepath: str) -> object:
             return self.activation(self.output_layer(input))
 
     class Model(nn.Module):
-        def __init__(self, num_blocks):
+        def __init__(self, model_architecture: list[list]):
             super(Model, self).__init__()
-            self.num_blocks = num_blocks
+            self.input_architecture = model_architecture[0]
+            self.hidden_architecture = model_architecture[1]
+            self.output_architecture = model_architecture[-1]
+            self.num_blocks = len(self.hidden_architecture)
+
+            print(f"Total blocks:\nInput:      {1}\nHidden:     {len(self.hidden_architecture)}\nOutput:     {1}")
             
-            self.input_block = InputBlock(weights = model_weights[0], biases = model_biases[0])
-            
-            print(f"num_blocks: {num_blocks}")
+            # Manufacture input block
+            self.input_block = InputBlock(architecture=self.input_architecture, weights=model_weights[0], biases=model_biases[0])
+
+            # Manufacture hidden (compute) blocks
             self.compute_block = nn.ModuleList([
-                ComputeBlock(weights = model_weights[x+1], biases = model_biases[x+1])
-                for x in range(num_blocks)
+                ComputeBlock(architecture=self.hidden_architecture[x], weights=model_weights[x+1], biases=model_biases[x+1])
+                for x in range(self.num_blocks)
             ])
-            self.output_block = OutputBlock(weights = np.array(model_weights[-1]), biases = np.array(model_biases[-1]))
+
+            # Manufacture output block
+            self.output_block = OutputBlock(architecture=self.output_architecture, weights=np.array(model_weights[-1]), biases=np.array(model_biases[-1]))
         
         
         def forward(self, input):
@@ -120,7 +178,7 @@ def import_from_file(filepath: str) -> object:
             output = self.output_block(output)
             return output
 
-    network = Model(50)
+    network = Model(model_architecture=architecture)
     return network
 
 
