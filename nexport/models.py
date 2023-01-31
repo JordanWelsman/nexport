@@ -145,7 +145,7 @@ class ICARNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 64),
             nn.ReLU(),
-            nn.Linear(64, 10)
+            nn.Linear(64, 1)
         )
 
 
