@@ -168,11 +168,11 @@ class XORNetwork(nn.Module):
         
         self.linear_step_stack = nn.Sequential(
             firstlayer,
-            XORNetwork.StepHS(),
+            self.StepHS(),
             secondlayer,
-            XORNetwork.StepHS(),
+            self.StepHS(),
             thirdlayer,
-            XORNetwork.StepHS()
+            self.StepHS()
         )
 
     # Network parameters
@@ -205,6 +205,59 @@ class XORNetwork(nn.Module):
     def forward(self, input):
         return self.linear_step_stack(input)
 
-    
-        
 
+class AltXORNetwork(nn.Module):
+    def __init__(self):
+        super(AltXORNetwork, self).__init__()
+        self.flatten = nn.Flatten()
+
+        firstlayer = nn.Linear(2, 3)
+        firstlayer.weight.data = self.first_weights
+        firstlayer.bias.data = self.first_biases
+        
+        secondlayer = nn.Linear(3, 3)
+        secondlayer.weight.data = self.second_weights
+        secondlayer.bias.data = self.second_biases
+        
+        thirdlayer = nn.Linear(3, 1)
+        thirdlayer.weight.data = self.third_weights
+        thirdlayer.bias.data = self.third_biases
+        
+        self.linear_step_stack = nn.Sequential(
+            firstlayer,
+            self.StepHS(),
+            secondlayer,
+            self.StepHS(),
+            thirdlayer,
+            self.StepHS()
+        )
+    
+    # Network parameters
+    # Hidden layer 1
+    first_weights = torch.tensor([[1.0, 0.0],
+                                [1.0, 1.0],
+                                [0.0, 1.0]])
+    first_biases = torch.tensor([0.0, -1.99, 0.0])
+
+    # Hidden layer 2
+    second_weights = torch.tensor([[0.0, 0.0, 0.0],
+                                [1.0, -2.0, 1.0],
+                                [0.0, 0.0, 0.0]])
+    second_biases = torch.tensor([0.0, 0.0, 0.0])
+
+    # Output layer
+    third_weights = torch.tensor([[0.0, 1.0, 0.0]])
+    third_biases = torch.tensor([0.0])
+
+    # Binary step activation function
+    class StepHS(nn.Module):
+        def __init__(self):
+            super().__init__()
+            
+        def forward(self, input):
+            output = torch.heaviside(input, torch.zeros(input.shape[0]))
+            return torch.Tensor(output)
+    
+    # Forward function (matmul with activation function)
+    def forward(self, input):
+        return self.linear_step_stack(input)
