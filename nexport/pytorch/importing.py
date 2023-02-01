@@ -72,7 +72,7 @@ def import_from_file(filepath: str) -> object:
 
     for x, line in enumerate(lines):
         if line.startswith("[[") or line.startswith(" ["): # if row of weight array
-            print(f"Line {x+1}: Weights for neuron {neuron} of layer {layer}") # broadcast line and key
+            # print(f"Line {x+1}: Weights for neuron {neuron} of layer {layer}") # broadcast line and key
             current_weights.append(line.replace("[", "").replace("]", "").replace(",", "").split(" ")) # store line in current weight array
             while "" in current_weights[-1]:
                 current_weights[-1].remove("")
@@ -83,7 +83,7 @@ def import_from_file(filepath: str) -> object:
             neuron += 1 # increment neuron number
             
         elif line.startswith("[") and len(lines[x+1]) == 0: # if bias array
-            print(f"Line {x+1}: Biases for layer {layer}") # 
+            # print(f"Line {x+1}: Biases for layer {layer}") # broadcast line and key 
             model_biases.append(line.replace("[", "").replace("]", "").replace(",", "").split(" ")) # write line to dictionary using key
             while "" in model_biases[-1]:
                 model_biases[-1].remove("")
@@ -91,7 +91,8 @@ def import_from_file(filepath: str) -> object:
             neuron = 1 # reset neuron number
             
         else:
-            print("-")
+            # print("-")
+            pass
 
     for x, layer in enumerate(model_weights):
         for y, neuron in enumerate(layer):
@@ -159,11 +160,11 @@ def import_from_file(filepath: str) -> object:
             print(f"Total blocks:\nInput:      {1}\nHidden:     {len(self.hidden_architecture)}\nOutput:     {1}")
             
             # Manufacture input block
-            self.input_block = InputBlock(architecture=self.input_architecture, weights=model_weights[0], biases=model_biases[0])
+            self.input_block = InputBlock(architecture=self.input_architecture, weights=np.array(model_weights[0]), biases=np.array(model_biases[0]))
 
             # Manufacture hidden (compute) blocks
             self.compute_block = nn.ModuleList([
-                ComputeBlock(architecture=self.hidden_architecture[x], weights=model_weights[x+1], biases=model_biases[x+1])
+                ComputeBlock(architecture=self.hidden_architecture[x], weights=np.array(model_weights[x+1]), biases=np.array(model_biases[x+1]))
                 for x in range(self.num_blocks)
             ])
 
