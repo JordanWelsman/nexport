@@ -61,7 +61,6 @@ def export(model: object, filetype: str, filename: str = "model", indent: int = 
 
 def nimport(filepath: str) -> object:
     extension = os.path.splitext(filepath)[-1]
-    print(extension)
     match nexport.__framework__:
         case "pytorch":
             match extension:

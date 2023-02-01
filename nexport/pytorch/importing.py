@@ -104,7 +104,7 @@ def import_from_file(filepath: str) -> object:
         model_biases[x] = model_biases[x].astype(np.float)
     
     architecture = discover_architecture(weight_array=model_weights)
-    print(f"Model architecture: {c.Color.BLUE}{architecture}{c.Color.DEFAULT}")
+    print(f"Model architecture:\n{c.Color.BLUE}{architecture}{c.Color.DEFAULT}")
 
     class InputBlock(nn.Module):
         def __init__(self, architecture: list, weights: list, biases: list):
@@ -114,7 +114,6 @@ def import_from_file(filepath: str) -> object:
             self.activation = get_activation(architecture[-1])
             
             self.input_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
-            # self.input_layer.weight.data = torch.Tensor(np.array(weights))
             self.input_layer.bias.data = torch.Tensor(biases)
             
             
@@ -142,7 +141,6 @@ def import_from_file(filepath: str) -> object:
             self.activation = get_activation(architecture[-1])
             
             self.output_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
-            # self.output_layer.weight.data = torch.Tensor(np.array(weights))
             self.output_layer.bias.data = torch.Tensor(biases)
             
             
@@ -157,7 +155,7 @@ def import_from_file(filepath: str) -> object:
             self.output_architecture = model_architecture[-1]
             self.num_blocks = len(self.hidden_architecture)
 
-            print(f"Total blocks:\nInput:      {1}\nHidden:     {len(self.hidden_architecture)}\nOutput:     {1}")
+            print(f"Total blocks:\n{c.Color.YELLOW}Input:      {1}\nHidden:     {len(self.hidden_architecture)}\nOutput:     {1}{c.Color.DEFAULT}")
             
             # Manufacture input block
             self.input_block = InputBlock(architecture=self.input_architecture, weights=np.array(model_weights[0]), biases=np.array(model_biases[0]))
