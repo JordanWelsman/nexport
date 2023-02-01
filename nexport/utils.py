@@ -10,7 +10,7 @@ from nexport.tensorflow import exporting as ntfe
 from nexport.tensorflow import importing as ntfi
 
 # External function visibility
-__all__ = ['detect_framework', 'export']
+__all__ = ['detect_framework', 'export', 'nimport']
 
 
 # Module functions
@@ -22,7 +22,9 @@ def detect_framework(imported: object = sys.modules.keys()) -> str:
     """
     frameworks = {
         "torch": "pytorch",
-        "tensorflow": "tensorflow"
+        "tensorflow": "tensorflow",
+        "tensorflow-macos": "tensorflow",
+        "tensorflow-metal": "tensorflow"
     }
 
     detected_module = [module for module in frameworks.keys() if module in imported]
@@ -46,12 +48,32 @@ def export(model: object, filetype: str, filename: str = "model", indent: int = 
                 case "json_exp":
                     npte.export_to_json_experimental(model=model, filename=filename, indent=indent, verbose=verbose)
                 case "csv" | "xml":
-                    raise NotImplementedError(f"This feature ({filetype} for {nexport.__framework__}) has not yet been implemented.")
+                    raise NotImplementedError(f"This feature (exporting {nexport.__framework__} in {filetype}) has not yet been implemented.")
                 case other:
                     raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
-        case "tensorflow":
+        case "tensorflow" | "tensorflow-macos" | "tensorflow-metal":
             match filetype:
                 case "txt" | "json" | "csv" | "xml":
-                    raise NotImplementedError(f"This feature ({filetype} for {nexport.__framework__}) has not yet been implemented.")
+                    raise NotImplementedError(f"This feature (exporting {nexport.__framework__} in {filetype}) has not yet been implemented.")
+                case other:
+                    raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
+
+
+def nimport(filepath: str) -> object:
+    extension = os.path.splitext(filepath)[-1]
+    print(extension)
+    match nexport.__framework__:
+        case "pytorch":
+            match extension:
+                case ".txt" | "":
+                    return npti.import_from_file(filepath=filepath)
+                case ".json":
+                    raise NotImplementedError(f"This feature (importing {extension} to {nexport.__framework__}) has not yet been implemented.")
+                case other:
+                    raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
+        case "tensorflow" | "tensorflow-macos" | "tensorflow-metal":
+            match extension:
+                case ".txt" | "" | ".json" | ".csv" | ".xml":
+                    raise NotImplementedError(f"This feature (importing {extension} to {nexport.__framework__}) has not yet been implemented.")
                 case other:
                     raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
