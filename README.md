@@ -9,6 +9,8 @@
 <!-- Logo -->
 <a href="https://pypi.org/project/nexport"><img src="https://user-images.githubusercontent.com/61209125/216233823-976b0cb4-e53a-464f-b72f-e25cfbd165e1.svg" width=100%></a>
 
+------------------------------------------------------
+
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport)
 ![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport)
 ![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport)
