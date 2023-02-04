@@ -2,7 +2,7 @@
 from setuptools import setup
 
 # Arguments
-version = "0.3.0"
+version = "0.4.0" # update __init__.py
 python_version = ">=3.10"
 
 # Long description from README.md
@@ -31,7 +31,6 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: 3.11',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
@@ -39,12 +38,17 @@ setup(
     package_dir = {'': 'nexport'},
     install_requires = [
         "jutils",
-        "numpy",
-        "torch"
+        "numpy<1.24",
     ],
     extras_require = {
         "dev": [
             "pytest"
+        ],
+        "pytorch": [
+            "torch"
+        ],
+        "tensorflow": [
+            "tensorflow"
         ]
     },
 )
