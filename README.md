@@ -27,26 +27,66 @@
 - [Current support](#current-support)
 - [Install \& use](#install--use)
   - [Test](#test)
-  - [Build](#build)
 - [Objectives](#objectives)
   - [Personal objectives](#personal-objectives)
 - [History](#history)
-  - [`0.0.0` (10.13.2022)](#000-10132022)
-  - [`0.0.1` (10.27.2022)](#001-10272022)
-  - [`0.0.2` (11.02.2022)](#002-11022022)
-  - [`0.1.0` (Planned)](#010-planned)
 - [Credits](#credits)
 - [License](#license)
 - [Links](#links)
 
 # Current support
 
+<!--
 | Filetype       | PyTorch            | Keras/TensorFlow |
 | -------------: | :----------------: | :--------------: |
 | Text (`.txt`)  | :white_check_mark: | :construction:   |
 | JSON (`.json`) | :white_check_mark: | :x:              |
 | CSV (`.csv`)   | :x:                | :x:              |
 | XML (`.xml`)   | :x:                | :x:              |
+-->
+
+<!-- Ugly HTML table -->
+<table>
+  <tr>
+    <th rowspan=2>Filetype</th>
+    <th colspan=2>PyTorch</th>
+    <th colspan=2>Keras/TensorFlow</th>
+  </tr>
+  <tr>
+    <th>Export</th>
+    <th>Import</th>
+    <th>Export</th>
+    <th>Import</th>
+  </tr>
+  <tr>
+    <td>Text (.txt)</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>🚧</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>JSON (.json)</td>
+    <td>✅</td>
+    <td>🚧</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>CSV (.csv)</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>XML (.xml)</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+</table>
 
 # Install & use
 
@@ -66,14 +106,6 @@
 4. Run tests with `PyTest`:
 `pytest`
 
-## Build
-
-1. Build module for distribution:
-`python3 setup.py bdist_wheel sdist`
-2. Push to `PyPI`:
-`pip install twine`
-`twine upload dist/*`
-
 # Objectives
 
 - Export weights and biases to human-readable file
@@ -91,27 +123,6 @@
 
 This package is intended to be used in conjunction with [inference-engine](https://github.com/BerkeleyLab/inference-engine). As such, `nexport` was developed by the `inference-engine` developers to enable compatability between the two softwares. `nexport` does this by exporting the weights and biases from networks compiled in `PyTorch`, `Keras`, and `TensorFlow` into standardized human-readable files. These files can be read by `inference-engine` to instantiate the netwoks in Fortran 2018 for inference.
 
-## `0.0.0` (10.13.2022)
-
-- GitHub repository created
-- Project created
-  - Basic `README.md` written
-
-## `0.0.1` (10.27.2022)
-
-- Package files created
-  - `setup.py` and `LICENSE.md`
-- Created test file & tested with `PyTest`
-
-## `0.0.2` (11.02.2022)
-
-- `PyTorch` export to `inference-engine` filetype implemented
-- 
-
-## `0.1.0` (Planned)
-
-- _Stable release_
-
 # Credits
 
 `nexport` was created and is currently maintained by **Jordan Welsman**.
@@ -119,7 +130,8 @@ Parts of this project were based on prior work by **[Tan Nguyen](mailto:TanNguye
 
 # License
 
-`nexport` does not currently have a license and is currently purely for private use only.
+`nexport` is developed and distributed under a modified `BSD` license.
+> See `LICENSE` for more details.
 
 # Links
 
