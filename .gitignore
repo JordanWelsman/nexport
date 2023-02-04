@@ -1,5 +1,5 @@
 .DS_Store
-.ipynp_checkpoints/
+.ipynb_checkpoints/
 .pytest_cache/
 .vscode/
 __pycache__/
