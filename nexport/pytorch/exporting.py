@@ -185,7 +185,6 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
             if layer_type == "hidden_layers":
                 outfile.write(f"{indent}\"{layer_type}\": [\n")
                 for x, layer in enumerate(model_object[layer_type]):
-                    # print(layer_type)
                     outfile.write(f"{indent}{indent}[\n")
                     for y, neuron in enumerate(layer):
                         outfile.write(f"{indent}{indent}{indent}" + "{\n")
@@ -210,7 +209,6 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
                         outfile.write(f"{indent}{indent}]\n") # last layer array element
                 outfile.write(f"{indent}],\n") # end of hidden layer array
             if layer_type == "output_layer":
-                # print(layer_type)
                 outfile.write(f"{indent}\"{layer_type}\": [\n")
                 for neuron in model_object[layer_type]:
                     outfile.write(f"{indent}{indent}" + "{\n")

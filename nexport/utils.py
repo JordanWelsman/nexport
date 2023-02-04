@@ -59,13 +59,13 @@ def export(model: object, filetype: str, filename: str = "model", indent: int = 
                     raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
 
 
-def nimport(filepath: str) -> object:
+def nimport(filepath: str, verbose: int = 1) -> object:
     extension = os.path.splitext(filepath)[-1]
     match nexport.__framework__:
         case "pytorch":
             match extension:
                 case ".txt" | "":
-                    return npti.import_from_file(filepath=filepath)
+                    return npti.import_from_file(filepath=filepath, verbose=verbose)
                 case ".json":
                     raise NotImplementedError(f"This feature (importing {extension} to {nexport.__framework__}) has not yet been implemented.")
                 case other:

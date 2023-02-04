@@ -54,7 +54,7 @@ def get_activation(activation: str) -> object:
             return models.XORNetwork.StepHS()
 
 
-def import_from_file(filepath: str) -> object:
+def import_from_file(filepath: str, verbose: int = None) -> object:
     """
     Function which imports weight and bias
     arrays and instantiates a model.
@@ -116,7 +116,6 @@ def import_from_file(filepath: str) -> object:
             self.input_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
             self.input_layer.bias.data = torch.Tensor(biases)
             
-            
         def forward(self, input):
             return self.activation(self.input_layer(input))
 
@@ -142,7 +141,6 @@ def import_from_file(filepath: str) -> object:
             
             self.output_layer.weight.data = torch.Tensor(np.transpose(np.array(weights)))
             self.output_layer.bias.data = torch.Tensor(biases)
-            
             
         def forward(self, input):
             return self.activation(self.output_layer(input))
