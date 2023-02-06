@@ -39,7 +39,7 @@ setup(
       'nexport': 'nexport'
       },
     install_requires = [
-        "jutils",
+        "jutl",
         "numpy<1.24",
     ],
     extras_require = {
