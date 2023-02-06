@@ -9,7 +9,7 @@ python_version = ">=3.10"
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-# Define list of 
+# Define list of submodules
 py_modules = ["calculators", "colors", "generic", "models", "utils", "pytorch", "tensorflow"]
 
 # Run stup function
