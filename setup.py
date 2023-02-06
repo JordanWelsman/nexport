@@ -35,7 +35,9 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    package_dir = {'': 'nexport'},
+    package_dir = {
+      'nexport': 'nexport'
+      },
     install_requires = [
         "jutils",
         "numpy<1.24",
