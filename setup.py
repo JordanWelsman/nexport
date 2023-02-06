@@ -9,6 +9,9 @@ python_version = ">=3.10"
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+# Define list of 
+py_modules = ["calculators", "colors", "generic", "models", "utils", "pytorch", "tensorflow"]
+
 # Run stup function
 setup(
     name = 'nexport',
@@ -19,7 +22,6 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://github.com/JordanWelsman/nexport/',
-    py_modules = ["__init__", "calculators", "colors", "models", "utils"],
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -35,8 +37,8 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    package_dir = {
-      'nexport': 'nexport'
+    package_data = {
+      'nexport': py_modules
       },
     install_requires = [
         "jutl",
