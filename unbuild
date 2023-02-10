@@ -14,9 +14,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     rm -rf build # remove build directory if exists
     rm -rf dist # remove distribution directory if exists
-    rm -rf nexport/nexport.egg-info # remove egg info directory if exists
     find . -name __pycache__ -type d -print0|xargs -0 rm -r -- # remove all pycache directories
     find . -name .pytest_cache -type d -print0|xargs -0 rm -r -- # remove all pytest cache directories
+    find . -name nexport.egg-info -type d -print0|xargs -0 rm -r -- # remove all egg-info directories
     echo "Project successfully unbuilt."
 else
     echo "Operation aborted."

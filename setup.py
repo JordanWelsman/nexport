@@ -2,12 +2,15 @@
 from setuptools import setup
 
 # Arguments
-version = "0.4.0" # update __init__.py
+version = "0.4.1" # update __init__.py
 python_version = ">=3.10"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
+# Define list of submodules
+py_modules = ["calculators", "colors", "generic", "models", "utils", "pytorch", "tensorflow"]
 
 # Run stup function
 setup(
@@ -19,7 +22,6 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://github.com/JordanWelsman/nexport/',
-    py_modules = ["__init__", "calculators", "colors", "models", "utils"],
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -35,9 +37,11 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    package_dir = {'': 'nexport'},
+    package_data = {
+      'nexport': py_modules
+      },
     install_requires = [
-        "jutils",
+        "jutl",
         "numpy<1.24",
     ],
     extras_require = {

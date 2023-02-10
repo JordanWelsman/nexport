@@ -1,6 +1,7 @@
 # Module imports
 import nexport
 import json
+# import os # disbaling os.getlogin() as it causes issues on supercomputers
 import datetime as dt
 import time as t
 
@@ -94,17 +95,18 @@ def create_layer_object(weights: list, biases: list, verbose: int = None) -> lis
     return neuron_list # return constructed layer
 
 
-def create_model_metadata(model_name: str, model_author: str = None) -> dict:
+def create_model_metadata(model_name: str, model_author: str = None, using_skip_connections: bool = None) -> dict:
     model_metadata = {
         "modelName": model_name,
         "modelAuthor": model_author,
-        "compilationDate": str(dt.datetime.now())
+        "compilationDate": str(dt.datetime.now()),
+        "usingSkipConnections": using_skip_connections
     }
 
     return model_metadata # return model metadata object
 
 
-def create_model_object(model: object, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> object:
+def create_model_object(model: object, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None, using_skip_connections: bool = None) -> object:
     """
     Function which creates a model object from a
     collection of layers instantiated with layer
@@ -116,7 +118,7 @@ def create_model_object(model: object, verbose: int = None, include_metadata: bo
     weights, biases = create_paramater_arrays(model=model, verbose=verbose)
 
     if include_metadata: # insert model metadata into model object
-        model_object["model"] = create_model_metadata(model_name=model_name, model_author=model_author)
+        model_object["metadata"] = create_model_metadata(model_name=model_name, model_author=model_author, using_skip_connections=using_skip_connections)
 
     if verbose >= 3: # if verbose set to at least 3
         print(f"{c.YELLOW}Creating layers...{c.DEFAULT}")
@@ -137,14 +139,7 @@ def create_model_object(model: object, verbose: int = None, include_metadata: bo
     return model_object # return constructed network
 
 
-def new_func():
-    """
-    Template function
-    """
-    pass
-
-
-def export_to_json(model: object, filename: str = None, indent: int = None, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None) -> None:
+def export_to_json(model: object, filename: str = None, indent: int = None, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None, using_skip_connections: bool = None) -> None:
     """
     Function which exports a passed model
     object to a JSON file.
@@ -152,7 +147,7 @@ def export_to_json(model: object, filename: str = None, indent: int = None, verb
     t1 = t.time()
     model_object = {}
     if include_metadata:
-        model_object = create_model_object(model=model, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author)
+        model_object = create_model_object(model=model, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author, using_skip_connections=using_skip_connections)
     else:
         model_object = create_model_object(model=model, verbose=verbose)
     json_object = json.dumps(obj=model_object, indent=indent)
@@ -169,7 +164,7 @@ def export_to_json(model: object, filename: str = None, indent: int = None, verb
         print(f"{c.MAGENTA}    Time taken: {c.LIGHTMAGENTA}{round(time, 2)}{c.MAGENTA}s{c.DEFAULT}")
 
 
-def export_to_json_experimental(model: object, filename: str = None, indent: int = None, verbose: int = None) -> None:
+def export_to_json_experimental(model: object, filename: str = None, indent: int = None, verbose: int = None, include_metadata: bool = None, model_name: str = None, model_author: str = None, using_skip_connections: bool = None) -> None:
     """
     Function which exports a passed
     model object to a JSON file, but
@@ -177,10 +172,25 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
     """
     t1 = t.time()
     model_object = create_model_object(model=model, verbose=verbose)
+    model_metadata = create_model_metadata(model_name=model_name, model_author=model_author, using_skip_connections=using_skip_connections)
     indent = "    "
 
     with open(nexport.append_extension(filename=filename, extension="json"), "w") as outfile:
         outfile.write("{\n")
+        if include_metadata:
+            outfile.write(f"{indent}\"metadata\": " + "{\n")
+            for d, data in enumerate(model_metadata.keys()):
+                if type(model_metadata[data]) is str:
+                    outfile.write(f"{indent}{indent}\"{data}\": \"{model_metadata[data]}\"")
+                elif type(model_metadata[data]) is bool:
+                    outfile.write(f"{indent}{indent}\"{data}\": {str(model_metadata[data]).lower()}")
+                else:
+                    outfile.write(f"{indent}{indent}\"{data}\": null")
+                if d < len(model_metadata.keys()) - 1:
+                    outfile.write(",\n")
+                else:
+                    outfile.write("\n")
+            outfile.write(f"{indent}" + "},\n")
         for layer_type in model_object.keys():
             if layer_type == "hidden_layers":
                 outfile.write(f"{indent}\"{layer_type}\": [\n")
