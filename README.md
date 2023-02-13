@@ -25,7 +25,7 @@
 
 # Overview
 
-`nexport` is a lightweight `python 3` package which enables neural network developers to export the weights and biases of trained networks to useful file types.
+nexport is a lightweight `Python 3.10+` package which enables neural network developers to export the weights and biases of trained networks to useful file types.
 
 # Table of contents
 
@@ -33,9 +33,7 @@
 - [Table of contents](#table-of-contents)
 - [Current support](#current-support)
 - [Install \& use](#install--use)
-  - [Test](#test)
 - [Objectives](#objectives)
-  - [Personal objectives](#personal-objectives)
 - [History](#history)
 - [Credits](#credits)
 - [License](#license)
@@ -102,6 +100,8 @@
 2. From python environment:
 `import nexport`
 
+<!--
+
 ## Test
 
 1. Clone repository:
@@ -113,18 +113,12 @@
 4. Run tests with `PyTest`:
 `pytest`
 
+-->
+
 # Objectives
 
 - Export weights and biases to human-readable file
 - Ensure compatability with all popular neural network development software
-
-## Personal objectives
-
-- Learn `PyTorch`
-- Understand how `PyTorch` and `Keras` construct neural networks
-- Learn how to publish a python package
-- Create a pseudo-pipeline between `Python` frameworks and `Fortran` projects (`PyTorch/Keras`-`nexport`-`inference-engine`)
-- Write a paper on this software
 
 # History
 
@@ -132,12 +126,13 @@ This package is intended to be used in conjunction with [inference-engine](https
 
 # Credits
 
-`nexport` was created and is currently maintained by **Jordan Welsman**.
+nexport was created and is currently maintained by **Jordan Welsman**.
 Parts of this project were based on prior work by **[Tan Nguyen](mailto:TanNguyen@lbl.gov)**.
 
 # License
 
-`nexport` is developed and distributed under a modified `BSD` license.
+nexport is developed and distributed under a Berkeley Laboratory modified `BSD` license.
+> **Note**
 > See `LICENSE` for more details.
 
 # Links
