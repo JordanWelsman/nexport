@@ -11,17 +11,17 @@
 
 ------------------------------------------------------
 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport)
-![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport)
-![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport)
-![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/tags)
+[![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/releases)
+[![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/)
+[![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/blob/main/LICENSE.md)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/commits/main)
 
-![PyPI](https://img.shields.io/pypi/v/nexport)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nexport)
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/nexport)
-![PyPI - Status](https://img.shields.io/pypi/status/nexport)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/nexport)
+[![PyPI](https://img.shields.io/pypi/v/nexport?style=for-the-badge)](https://pypi.org/project/nexport)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nexport?style=for-the-badge)](https://docs.python.org/3/whatsnew/3.10.html)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#files)
+[![PyPI - Status](https://img.shields.io/pypi/status/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#data)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#history)
 
 # Overview
 
