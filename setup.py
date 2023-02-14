@@ -21,7 +21,7 @@ from setuptools import setup
 
 # Arguments
 version = "0.4.4" # update __init__.py
-python_version = "3.10"
+python_version = "==3.10"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
