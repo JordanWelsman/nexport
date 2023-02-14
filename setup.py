@@ -1,6 +1,6 @@
 # COPYRIGHT NOTICE
 
-# “Neural Network Export Package (nexport) v0.4.4” Copyright (c) 2023,
+# “Neural Network Export Package (nexport) v0.4.5” Copyright (c) 2023,
 # The Regents of the University of California, through Lawrence Berkeley
 # National Laboratory (subject to receipt of any required approvals from
 # the U.S. Dept. of Energy). All rights reserved.
@@ -20,8 +20,8 @@
 from setuptools import setup
 
 # Arguments
-version = "0.4.4" # update __init__.py
-python_version = "==3.10"
+version = "0.4.5" # update __init__.py
+python_version = ">=3.10"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
