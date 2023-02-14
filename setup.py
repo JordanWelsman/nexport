@@ -1,6 +1,6 @@
 # COPYRIGHT NOTICE
 
-# “Neural Network Export Package (nexport) v0.4.3” Copyright (c) 2023,
+# “Neural Network Export Package (nexport) v0.4.4” Copyright (c) 2023,
 # The Regents of the University of California, through Lawrence Berkeley
 # National Laboratory (subject to receipt of any required approvals from
 # the U.S. Dept. of Energy). All rights reserved.
@@ -20,8 +20,8 @@
 from setuptools import setup
 
 # Arguments
-version = "0.4.3" # update __init__.py
-python_version = ">=3.10"
+version = "0.4.4" # update __init__.py
+python_version = "3.10"
 
 # Long description from README.md
 with open("README.md", "r") as fh:
@@ -35,11 +35,13 @@ setup(
     name = 'nexport',
     version = version,
     description = 'A Python package for exporting the weights and biases of neural networks.',
+    license='LBNL BSD',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
-    url = 'https://github.com/JordanWelsman/nexport/',
+    url = 'https://pypi.org/project/nexport/',
+    download_url='https://github.com/JordanWelsman/jutils/tags',
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -58,6 +60,7 @@ setup(
     package_data = {
       'nexport': py_modules
       },
+    python_requires=python_version,
     install_requires = [
         "jutl",
         "numpy<1.24",
@@ -73,4 +76,5 @@ setup(
             "tensorflow"
         ]
     },
+    keywords='python, neural network, export, import, parameters, weights, biases, layers, neurons'
 )
