@@ -41,7 +41,7 @@ setup(
     author = 'Jordan Welsman',
     author_email = 'welsman@lbl.gov',
     url = 'https://pypi.org/project/nexport/',
-    download_url='https://github.com/JordanWelsman/jutils/tags',
+    download_url='https://github.com/JordanWelsman/nexport/tags',
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -53,6 +53,7 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
@@ -65,16 +66,5 @@ setup(
         "jutl",
         "numpy<1.24",
     ],
-    extras_require = {
-        "dev": [
-            "pytest"
-        ],
-        "pytorch": [
-            "torch"
-        ],
-        "tensorflow": [
-            "tensorflow"
-        ]
-    },
     keywords='python, neural network, export, import, parameters, weights, biases, layers, neurons'
 )
