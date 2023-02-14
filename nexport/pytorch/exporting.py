@@ -238,7 +238,7 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
                 outfile.write(f"{indent}],\n") # end of hidden layer array
             if layer_type == "output_layer":
                 outfile.write(f"{indent}\"{layer_type}\": [\n")
-                for neuron in model_object[layer_type]:
+                for n, neuron in enumerate(model_object[layer_type]):
                     outfile.write(f"{indent}{indent}" + "{\n")
                     for param_type in neuron.keys():
                         if param_type == "weights":
@@ -251,7 +251,10 @@ def export_to_json_experimental(model: object, filename: str = None, indent: int
                             outfile.write(f"],\n")
                         if param_type == "bias":
                             outfile.write(f"{indent}{indent}{indent}\"{param_type}\": {neuron[param_type]}\n")
-                    outfile.write(f"{indent}{indent}" + "}\n")
+                    if n < len(model_object[layer_type]) - 1:
+                        outfile.write(f"{indent}{indent}" + "},\n")
+                    else:
+                        outfile.write(f"{indent}{indent}" + "}\n")
                 outfile.write(f"{indent}]\n")
         outfile.write("}")
 
