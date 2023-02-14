@@ -1,6 +1,6 @@
 # COPYRIGHT NOTICE
 
-# “Neural Network Export Package (nexport) v0.4.3” Copyright (c) 2023,
+# “Neural Network Export Package (nexport) v0.4.4” Copyright (c) 2023,
 # The Regents of the University of California, through Lawrence Berkeley
 # National Laboratory (subject to receipt of any required approvals from
 # the U.S. Dept. of Energy). All rights reserved.
@@ -17,7 +17,7 @@
 
 
 # Dunder attributes
-__version__ = "v0.4.3" # update setup.py
+__version__ = "v0.4.4" # update setup.py
 __author__ = "Jordan Welsman"
 
 # Import submodules so submodule functions
