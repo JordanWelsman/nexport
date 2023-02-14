@@ -26,7 +26,7 @@ __all__ = ['FFNetwork', 'BFNetwork', 'ICARNetwork', 'XORNetwork']
 
 # Model classes
 
-class FFNetwork(nn.Module):
+class FFNetwork(nn.Module): # Feed Forward Network
     def __init__(self):
         super(FFNetwork, self).__init__()
         self.flatten = nn.Flatten()
@@ -38,8 +38,20 @@ class FFNetwork(nn.Module):
             nn.Linear(3, 1) # 3 weights, 1 bias
         )
 
+class MONetwork(nn.Module): # Multiple Output Network
+    def __init__(self):
+        super(MONetwork, self).__init__()
+        self.flatten = nn.Flatten()
+        self.linear_relu_stack = nn.Sequential(
+            nn.Linear(4, 8),
+            nn.ReLU(),
+            nn.Linear(8, 16),
+            nn.ReLU(),
+            nn.Linear(16, 8),
+        )
 
-class BFNetwork(nn.Module):
+
+class BFNetwork(nn.Module): # Large test Network
     def __init__(self):
         super(BFNetwork, self).__init__()
         self.flatten = nn.Flatten()
@@ -58,7 +70,7 @@ class BFNetwork(nn.Module):
         )
 
 
-class ICARNetwork(nn.Module):
+class ICARNetwork(nn.Module): # ICAR Network
     def __init__(self):
         super(ICARNetwork, self).__init__()
         self.flatten = nn.Flatten()
@@ -167,7 +179,7 @@ class ICARNetwork(nn.Module):
         )
 
 
-class XORNetwork(nn.Module):
+class XORNetwork(nn.Module): # XOR logic Network
     def __init__(self):
         super(XORNetwork, self).__init__()
         self.flatten = nn.Flatten()
@@ -224,7 +236,7 @@ class XORNetwork(nn.Module):
         return self.linear_step_stack(input)
 
 
-class AltXORNetwork(nn.Module):
+class AltXORNetwork(nn.Module): # Alternative XOR logic Network
     def __init__(self):
         super(AltXORNetwork, self).__init__()
         self.flatten = nn.Flatten()
