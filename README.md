@@ -35,7 +35,6 @@
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/JordanWelsman/nexport?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport?style=for-the-badge)
 
-
 </div>
 
 # Overview
