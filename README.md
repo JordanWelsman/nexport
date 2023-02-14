@@ -16,7 +16,7 @@
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/tags)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/releases)
 [![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/wiki/Version-History)
-[![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/blob/main/LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-LBNL%20BSD-blue?style=for-the-badge)](https://github.com/JordanWelsman/nexport/blob/main/LICENSE.md)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/commits/main)
 
 </div>
