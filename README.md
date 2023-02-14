@@ -14,8 +14,8 @@
 <div align="center">
 
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/tags)
-[![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/releases)
-[![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/wiki/Version-History)
 [![GitHub](https://img.shields.io/github/license/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/blob/main/LICENSE.md)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/commits/main)
 
@@ -27,6 +27,14 @@
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#files)
 [![PyPI - Status](https://img.shields.io/pypi/status/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#data)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/nexport?style=for-the-badge)](https://pypi.org/project/nexport/#history)
+
+</div>
+<div align="center">
+
+![Lines of code](https://img.shields.io/tokei/lines/github/JordanWelsman/nexport?style=for-the-badge)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/JordanWelsman/nexport?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport?style=for-the-badge)
+
 
 </div>
 
