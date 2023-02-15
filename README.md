@@ -31,6 +31,7 @@
 </div>
 <div align="center">
 
+[![GitHub forks](https://img.shields.io/github/forks/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/network/members)
 ![Lines of code](https://img.shields.io/tokei/lines/github/JordanWelsman/nexport?style=for-the-badge)
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/JordanWelsman/nexport?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/JordanWelsman/nexport?style=for-the-badge)
