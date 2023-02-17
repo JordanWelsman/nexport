@@ -18,6 +18,7 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/wiki/Version-History)
 [![GitHub license](https://img.shields.io/badge/license-LBNL%20BSD-blue?style=for-the-badge)](https://github.com/JordanWelsman/nexport/blob/main/LICENSE.md)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JordanWelsman/nexport?style=for-the-badge)](https://github.com/JordanWelsman/nexport/commits/main)
+[![GitHub wiki](https://img.shields.io/badge/wiki-nexport-blueviolet?style=for-the-badge)](https://github.com/JordanWelsman/nexport/wiki)
 
 </div>
 <div align="center">
@@ -42,7 +43,7 @@
 
 # Overview
 
-nexport is a lightweight `Python 3.10+` package which enables neural network developers to export the weights and biases of trained networks to useful file types.
+nexport is a lightweight `Python 3.10+` package which empowers deep learning developers in exporting the trainable parameters of deep neural networks to human-readable and transrerable file types.
 
 # Table of contents
 
