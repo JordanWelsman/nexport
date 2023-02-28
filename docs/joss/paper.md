@@ -1,26 +1,37 @@
 ---
-title: ''
+title: 'nexport: A Python package for exporting the weights and biases of neural networks'
 tags:
-  - 
+  - Python
+  - neural networks
+  - parameters
+  - human readable
+  - export
+  - import
+  - utilities
 authors:
   - name: Jordan A. Welsman
     orcid: 0000-0002-2882-594X
+    corresponding: true
+    equal-contrib: false
+    affiliation: "1, 2"
+  - name: Damian W. I. Rouson
+    orcid: 0000-0002-2344-868X
     equal-contrib: true
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
-    affiliation: 2
-  - name: Author with no affiliation
-    corresponding: true # (This is how to denote the corresponding author)
-    affiliation: 3
+    affiliation: "1, 3"
+  - name: Tan Thanh Nhat Nguyen
+    orcid: 0000-0003-3748-403X
+    equal-contrib: true
+    affiliation: "1, 4"
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Lawrence Berkeley National Laboratory, USA
    index: 1
- - name: Institution Name, Country
+ - name: Bournemouth University, UK
    index: 2
- - name: Independent Researcher, Country
+ - name: Stanford University, USA
    index: 3
-date: 13 August 2017
+ - name: University of California, San Diego, USA
+   index: 4
+date: March 2023
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
@@ -31,18 +42,11 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+Neural networks trained in Python with deep learning frameworks such as `PyTorch` [@pytorch] and `TensorFlow` [@tensorflow] only exist while they are loaded in memory. The trainable parameters of such models are created through random initialization and depend on volatile memory for persistance. While there exists ways of exporting the parameters of these models so they can be loaded into memory later, they often compile them into binary files which are not human-readable or readable by other programming laguages due to language-specific loading methods. This poses an issue to inter-language research. `nexport` proposes a solution to this problem by allowing the user to export their model parameters to various human-readable and language-agnostic file formats commonly used by many programming languages.
 
 # Statement of need
 
+<!--
 `Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
 enables wrapping low-level languages (e.g., C) for speed without losing
 flexibility or ease-of-use in the user-interface. The API for `Gala` was
@@ -62,7 +66,9 @@ visualizations of textbook material [@Binney:2008]. The combination of speed,
 design, and support for Astropy functionality in `Gala` will enable exciting
 scientific explorations of forthcoming data releases from the *Gaia* mission
 [@gaia] by students and experts alike.
+-->
 
+<!--
 # Mathematics
 
 Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
@@ -79,7 +85,9 @@ You can also use plain \LaTeX for equations
 \hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
 \end{equation}
 and refer to \autoref{eq:fourier} from text.
+-->
 
+<!--
 # Citations
 
 Citations to entries in paper.bib should be in
@@ -93,7 +101,9 @@ For a quick reference, the following citation commands can be used:
 - `@author:2001`  ->  "Author et al. (2001)"
 - `[@author:2001]` -> "(Author et al., 2001)"
 - `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
+-->
 
+<!--
 # Figures
 
 Figures can be included like this:
@@ -102,10 +112,12 @@ and referenced from text using \autoref{fig:example}.
 
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% }
+-->
 
 # Acknowledgements
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+nexport was developed at Lawrence Berkeley National Laboratory, and was wholly funded
+under contract with the U.S. Department of Energy (DOE). It is actively being developed as
+an open-source project.
 
 # References
