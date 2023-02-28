@@ -16,11 +16,11 @@ authors:
     affiliation: "1, 2"
   - name: Damian W. I. Rouson
     orcid: 0000-0002-2344-868X
-    equal-contrib: true
+    equal-contrib: false
     affiliation: "1, 3"
   - name: Tan Thanh Nhat Nguyen
     orcid: 0000-0003-3748-403X
-    equal-contrib: true
+    equal-contrib: false
     affiliation: "1, 4"
 affiliations:
  - name: Lawrence Berkeley National Laboratory, USA
@@ -40,6 +40,8 @@ bibliography: paper.bib
 Neural networks trained in Python with deep learning frameworks such as `PyTorch` [@pytorch] and `TensorFlow` [@tensorflow] only exist while they are loaded in memory. The trainable parameters of such models are created through random initialization and depend on volatile memory for persistance. While there exists ways of exporting the parameters of these models so they can be loaded into memory later, they often compile them into binary files which are not human-readable or readable by other programming laguages due to language-specific loading methods. This poses an issue to inter-language research. `nexport` proposes a solution to this problem by allowing the user to export their model parameters to various human-readable and language-agnostic file formats commonly used by many programming languages.
 
 # Statement of need
+
+As Python is the industry de-facto lanuage for deep learning development, both training and deployment usually happens in Python, or via a graph extraction method to another application. The problem arises when trying to deploy a trained PyTorch or TensorFlow model to other languages. nexport solves this issue by enabling developers to export model parameters to human-readable and labguage-independent file formats like .txt and .json. The goal is to support the exporting of deep learning models to formats that are easily parsable by applications and modules written in different languages.
 
 <!--
 `Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
@@ -110,6 +112,8 @@ Figure sizes can be customized by adding an optional second parameter:
 -->
 
 # Acknowledgements
+
+nexoort was developed to support the model loading of `inference-engine`, a Fortran package that enables deep learning inference in Fortran applications, where it was used to replace the Thompson microphisics model used in the precipitation simulation component in `ICAR`.
 
 nexport was developed at Lawrence Berkeley National Laboratory, and was wholly funded
 under contract with the U.S. Department of Energy (DOE). It is actively being developed as
