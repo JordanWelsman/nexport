@@ -61,9 +61,9 @@ def export(model: object, filetype: str, filename: str = "model", indent: int = 
                 case "txt":
                     npte.export_to_file(model=model, filename=filename)
                 case "json":
-                    npte.export_to_json(model=model, filename=filename, indent=indent, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author, activation_function=activation_function.lower(), using_skip_connections=using_skip_connections)
+                    npte.export_to_json(model=model, filename=filename, indent=indent, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author, activation_function=activation_function.lower() if activation_function is not None else activation_function, using_skip_connections=using_skip_connections)
                 case "json_exp":
-                    npte.export_to_json_experimental(model=model, filename=filename, indent=indent, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author, activation_function=activation_function.lower(), using_skip_connections=using_skip_connections)
+                    npte.export_to_json_experimental(model=model, filename=filename, indent=indent, verbose=verbose, include_metadata=include_metadata, model_name=model_name, model_author=model_author, activation_function=activation_function.lower() if activation_function is not None else activation_function, using_skip_connections=using_skip_connections)
                 case "csv" | "xml":
                     raise NotImplementedError(f"This feature (exporting {nexport.__framework__} in {filetype}) has not yet been implemented.")
                 case other:
