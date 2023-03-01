@@ -16,8 +16,12 @@
 # works, and perform publicly and display publicly, and to permit others to do so.
 
 
+# Module imports
+import json
+
+
 # External function visibility
-__all__ = ['append_extension']
+__all__ = ['append_extension', 'import_from_json']
 
 
 # Module functions
@@ -33,3 +37,16 @@ def append_extension(filename: str, extension: str) -> str:
             return filename + "." + extension
         case other:
             raise RuntimeError(f"This filetype ({other}) is unrecognized and will not be supported in the near future.")
+
+
+def import_from_json(filename: str):
+    """
+    Function which imports a model from a
+    JSON file and returns it as an object.
+    """
+    with open(filename, 'r') as f:
+        json_data = json.load(f)
+    print(json_data)
+    
+    python_object = json.loads(json_data)
+    print(python_object)
